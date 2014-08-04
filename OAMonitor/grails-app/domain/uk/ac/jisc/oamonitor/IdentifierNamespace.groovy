@@ -1,6 +1,6 @@
-package ac.uk.jisc.oamonitor
+package uk.ac.jisc.oamonitor
 
-import ac.uk.jisc.oamonitor.ClassUtils
+import uk.ac.jisc.oamonitor.ClassUtils
 
 class IdentifierNamespace {
 

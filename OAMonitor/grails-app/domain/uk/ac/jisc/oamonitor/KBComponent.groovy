@@ -11,7 +11,7 @@ import uk.ac.jisc.oamonitor.GOKbTextUtils
 import uk.ac.jisc.oamonitor.ClassUtils
 
 /**
- * Abstract base class for GoKB Components.
+ * Abstract base class for OA Monitor Components.
  */
 
 @Log4j
@@ -247,7 +247,7 @@ abstract class KBComponent {
   /**
    * Last updated by
    */
-  User lastUpdatedBy
+  Object lastUpdatedBy
 
   /**
    * The source for the record (Whatever it is)
