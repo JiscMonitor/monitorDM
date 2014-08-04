@@ -16,5 +16,6 @@ class OACrawlerServiceSpec extends Specification {
     }
 
     void "test something"() {
+      URL mock_es_response_1 = getClass().getResource('mock_es_search_response_1.json') 
     }
 }
