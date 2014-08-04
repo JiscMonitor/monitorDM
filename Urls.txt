@@ -1,0 +1,13 @@
+
+
+
+
+TOC At
+http://www.journaltocs.ac.uk/index.php?action=search&subAction=hits&journalID=7224&userQueryID=22185&high=1&ps=30&page=1&items=0&journal_filter=&journalby=
+
+
+then resolve
+curl -D - -L -H "Accept: text/turtle" "http://dx.doi.org/10.1021/co500036n"
+
+
+http://www.crossref.org/fundref/
