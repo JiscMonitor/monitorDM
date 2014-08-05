@@ -9,12 +9,15 @@ import spock.lang.Specification
 @TestFor(OACrawlerService)
 class OACrawlerServiceSpec extends Specification {
 
-    def setup() {
+
+    void setUp(){
     }
 
-    def cleanup() {
+    void testSomethingBad(){
+        OACrawlerService.getRecordsSince()
     }
 
-    void "test something"() {
+    void testSomethingGood(){
+        OACrawlerService.getRecordsSince()
     }
 }
