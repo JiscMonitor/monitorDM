@@ -3,6 +3,9 @@ package oamonitor
 import grails.converters.JSON
 import grails.transaction.Transactional
 import groovyx.net.http.HTTPBuilder
+import uk.ac.jisc.oamonitor.Identifier
+import uk.ac.jisc.oamonitor.IdentifierNamespace
+import uk.ac.jisc.oamonitor.TitleInstance
 
 
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html
@@ -12,17 +15,13 @@ class OACrawlerService {
 
     def getRecordsSince(es_endpoint, from_timestamp, closure)
     {
-        boolean firstRun = false
         def http
         if (es_endpoint==null || es_endpoint.isEmpty())
-           return "Elasticsearch URL not passed"
+           throw new RuntimeException("Elasticsearch URL not passed "+es_endpoint)
         else
             http = new HTTPBuilder(es_endpoint)
 
         Date latest;
-        if (from_timestamp)
-            firstRun = true
-
         http.request(GET,JSON) { req, json->
 
             json.responseData.results.each {
@@ -34,16 +33,18 @@ class OACrawlerService {
 
                 closure(it)
             }
-
         }
-
     }
 
+    //closure passed into record processing to create a record should it not exist already
     def doaj_processing_closure = { record ->
         def title = record.title
         def issn = record.issn
-
-        //if(!title exists in db using issn) // found - Great Not found - Create
+        Identifier identifier = lookupOrCreateCanonicalIdentifier(issn, title)
+        if (!identifier)
+        {
+            new Identifier(new IdentifierNamespace(issn), title)
+        }
     }
 
 
