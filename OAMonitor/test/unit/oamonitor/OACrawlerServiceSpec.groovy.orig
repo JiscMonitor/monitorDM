@@ -17,9 +17,12 @@ class OACrawlerServiceSpec extends Specification {
         OACrawlerService.getRecordsSince()
     }
 
-    void "test something"() {
-      URL mock_es_response_1 = getClass().getResource('mock_es_search_response_1.json') 
+<<<<<<< HEAD
     void testSomethingGood(){
         OACrawlerService.getRecordsSince()
+=======
+    void "test something"() {
+      URL mock_es_response_1 = getClass().getResource('mock_es_search_response_1.json') 
+>>>>>>> 7e56cbb381c5fe1f0295457fa9294c6946b16ef0
     }
 }
