@@ -6,6 +6,8 @@ class BootStrap {
 
   def init = { servletContext ->
 
+    log.debug("init...");
+
     if ( grailsApplication.config.localauth ) {
       log.debug("localauth is set.. ensure user accounts present (From local config file) ${grailsApplication.config.sysusers}");
 
