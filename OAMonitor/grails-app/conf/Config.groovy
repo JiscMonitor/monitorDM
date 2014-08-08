@@ -123,9 +123,15 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'uk.ac.jisc.oamonitor.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'uk.ac.jisc.oamonitor.UserRole'
 grails.plugin.springsecurity.authority.className = 'uk.ac.jisc.oamonitor.Role'
+
+
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
+        '/':                              ['permitAll'],
+        '/home':                          ['permitAll'],
+        '/home/**':                       ['permitAll'],
+        '/index':                         ['permitAll'],
+        '/welcome/**':                    ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
@@ -133,4 +139,10 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
 ]
+
+grails.plugin.springsecurity.providerNames = ['preAuthenticatedAuthenticationProvider',
+                                              'daoAuthenticationProvider',
+                                              'anonymousAuthenticationProvider',
+                                              'rememberMeAuthenticationProvider' ]
+
 
