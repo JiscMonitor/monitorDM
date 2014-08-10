@@ -24,7 +24,7 @@
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
+      <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -58,11 +58,13 @@
               <li><a href="#contact">Contact</a></li>
             </sec:ifLoggedIn>
           </ul>
+
           <ul class="nav navbar-nav pull-right">
             <sec:ifLoggedIn>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user?.username} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
+                  <li><g:link controller="logout">Logout</g:link></li>
                   <li><g:link controller="api">Api</g:link></li>
                   <li><g:link controller="profile">Profile</g:link></li>
                   <li><g:link controller="logout">Logout</g:link></li>
