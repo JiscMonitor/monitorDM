@@ -142,9 +142,7 @@ grails.plugin.springsecurity.authority.className = 'uk.ac.jisc.oamonitor.Role'
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':                              ['permitAll'],
-        '/home':                          ['permitAll'],
-        '/home/**':                       ['permitAll'],
-        '/index':                         ['permitAll'],
+        '/welcome':                    ['permitAll'],
         '/welcome/**':                    ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
