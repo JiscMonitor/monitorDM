@@ -75,6 +75,7 @@ grails.project.dependency.resolution = {
         compile ':spring-security-ldap:2.0-RC2'
         compile ':spring-security-shibboleth-native-sp:2.0.0-RC1'
 
+        runtime ":twitter-bootstrap:3.2.0"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
