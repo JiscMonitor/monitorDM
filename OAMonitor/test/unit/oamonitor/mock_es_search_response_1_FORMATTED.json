@@ -1,0 +1,1631 @@
+{
+    "_shards": {
+        "failed": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "aad1fd249f3f4623bed72a65617dfc4f",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "Es frecuente encontrar en nuestro pa\u00eds alteraciones funcionales y /o morfol\u00f3gicas de los labios que unido a la presencia de h\u00e1bitos deformantes y anomal\u00edas dentomaxilofaciales producen un cierre bilabial incompetente. Se realiz\u00f3 un estudio observacional, descriptivo y prospectivo con 180 ni\u00f1os entre 5 y 12 a\u00f1os de edad que asistieron a las escuelas y c\u00edrculos infantiles del \u00e1rea de salud del Policl\u00ednico Tom\u00e1s Romay en los a\u00f1os 2006-2007 para determinar por primera vez la fuerza labial inferior durante el cierre. De los 180 ni\u00f1os, 90 ten\u00edan el cierre bilabial competente y 90 incompetente. Se emple\u00f3 el test de Wilcoxon para comparar medias en muestras independientes y pareadas. La fuerza labial inferior en este estudio aument\u00f3 con la edad y el tipo de dentici\u00f3n, siendo mayor en el sexo masculino, con 291.33 gramos en la dentici\u00f3n permanente del grupo de cierre bilabial competente, y 336.00 gramos en el grupo incompetente, por lo que recomendamos realizar acciones preventivas desde edades tempranas para prevenir la gravedad de las maloclusiones que suelen aparecer en esas edades.<br>Functional and morfological disturbances of lips are common in our country which united deforming habits and dentomaxillofacial anomalies cause incompetent labial closing. An observational study was made including 180 children both genre with age range from 5 to 12 who attended schools and children's nurseries belong Tom\u00e1s Romay\u00b4s Clinic during 2006-2007 to determine inferior labial force for first time during closing. 90 children had competent bilabial and 90 incompetent. Wilcoxon\u00b4s test was used to compare stockings in independent and paired samples. Inferior labial force in this study increased with the age and the teething type, being bigger in males, with 291.33 grams in permanent teething of competent bilabial closing's group, and 336.00 grams in the incompetent group, we recommend carrying out preventive actions from early ages to prevent severity of malocclusions that usually appear in those ages.",
+                        "author": [
+                            {
+                                "name": "Brismayda Garc\u00eda Gonz\u00e1lez"
+                            },
+                            {
+                                "name": "Elietter Elayne Alazo Almagro"
+                            },
+                            {
+                                "name": "Luis Soto Cantero"
+                            },
+                            {
+                                "name": "Angel R Vistorte Pupo"
+                            }
+                        ],
+                        "identifier": [
+                            {
+                                "id": "1729-519X",
+                                "type": "pissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "CU",
+                            "language": [
+                                "Spanish"
+                            ],
+                            "number": "4",
+                            "publisher": "Universidad de Ciencias M\u00e9dicas de la Habana",
+                            "title": "Revista Habanera de Ciencias M\u00e9dicas ",
+                            "volume": "8"
+                        },
+                        "keywords": [
+                            "Fuerza labial",
+                            "dentici\u00f3n permanente.",
+                            "Labial force",
+                            "permanent dentition."
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1729-519X2009000400032"
+                            }
+                        ],
+                        "month": "11",
+                        "start_page": "0",
+                        "subject": [
+                            {
+                                "code": "R5-920",
+                                "scheme": "LCC",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "R5-920",
+                                "scheme": "LCC",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "R5-920",
+                                "scheme": "LCC",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "code": "R5-920",
+                                "scheme": "LCC",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            }
+                        ],
+                        "title": "Estudio de la fuerza labial inferior en ni\u00f1os: Policl\u00ednico Tomas Romay. Habana Vieja Lower labial's forces study in children: Tomas Romay Clinic, Old Havana",
+                        "year": "2009"
+                    },
+                    "created_date": "2013-09-04T01:54:15Z",
+                    "id": "aad1fd249f3f4623bed72a65617dfc4f",
+                    "index": {
+                        "classification": [
+                            "Medicine",
+                            "Medicine (General)",
+                            "Health Sciences"
+                        ],
+                        "country": "Cuba",
+                        "date": "2009-11-01T00:00:00Z",
+                        "issn": [
+                            "1729-519X"
+                        ],
+                        "language": [
+                            "Spanish"
+                        ],
+                        "publisher": [
+                            "Universidad de Ciencias M\u00e9dicas de la Habana"
+                        ],
+                        "schema_code": [
+                            "LCC:R5-920",
+                            "LCC:R"
+                        ],
+                        "schema_subject": [
+                            "DOAJ:Medicine (General)",
+                            "DOAJ:Health Sciences",
+                            "LCC:Medicine",
+                            "LCC:Medicine (General)"
+                        ],
+                        "subject": [
+                            "Medicine",
+                            "Medicine (General)",
+                            "Health Sciences"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad23ca35c004c8b91ce63e6793c4bc0",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "The aim of this study is to investigate the opinions of prospective mathematics teachers in Teaching Practice course taken at the last semester of the teacher education program. For this purpose, 47 prospective teachers taking Teaching Practice wrote and submitted one or two-page reflection of their school-based experiences at the end of the semester. Their written responses were examined and analyzed qualitatively. Findings indicated that (1) there exist not enough opportunities for practice teaching, little or no feedback from their supervising teachers, no links between pure mathematics courses and school mathematics. On the other hand, they stated that they get benefit from the teaching courses such as Teaching Methodology I-II, and Instructional Technology and Developing Materials, feel like the real teacher of their classrooms and get to know more about the real classroom environment and school students.    Key words:",
+                        "author": [
+                            {
+                                "name": "Ali Eraslan"
+                            }
+                        ],
+                        "end_page": "221",
+                        "identifier": [
+                            {
+                                "id": "1307-6086",
+                                "type": "pissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "TR",
+                            "language": [
+                                "Turkish",
+                                "English"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by-nc-nd",
+                                    "type": "CC by-nc-nd"
+                                }
+                            ],
+                            "number": "1",
+                            "publisher": "Necatibey Faculty of Education ",
+                            "title": "Necatibey Faculty of Education, Electronic Journal of Science and Mathematics Education ",
+                            "volume": "3"
+                        },
+                        "keywords": [
+                            "Practice teaching",
+                            "prospective mathematics teachers",
+                            "opinions"
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.nef.balikesir.edu.tr/~dergi/makaleler/yayinda/6/EFMED_MTE122.pdf"
+                            }
+                        ],
+                        "month": "06",
+                        "start_page": "207",
+                        "subject": [
+                            {
+                                "code": "LC8-6691",
+                                "scheme": "LCC",
+                                "term": "Special aspects of education"
+                            },
+                            {
+                                "code": "L",
+                                "scheme": "LCC",
+                                "term": "Education"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Education"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "code": "LC8-6691",
+                                "scheme": "LCC",
+                                "term": "Special aspects of education"
+                            },
+                            {
+                                "code": "L",
+                                "scheme": "LCC",
+                                "term": "Education"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Education"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "code": "LC8-6691",
+                                "scheme": "LCC",
+                                "term": "Special aspects of education"
+                            },
+                            {
+                                "code": "L",
+                                "scheme": "LCC",
+                                "term": "Education"
+                            },
+                            {
+                                "code": "LC8-6691",
+                                "scheme": "LCC",
+                                "term": "Special aspects of education"
+                            },
+                            {
+                                "code": "L",
+                                "scheme": "LCC",
+                                "term": "Education"
+                            }
+                        ],
+                        "title": "Prospective Mathematics Teachers' Opinions on ",
+                        "year": "2009"
+                    },
+                    "created_date": "2009-06-11T12:46:49Z",
+                    "id": "aad23ca35c004c8b91ce63e6793c4bc0",
+                    "index": {
+                        "classification": [
+                            "Special aspects of education",
+                            "Education",
+                            "Social Sciences"
+                        ],
+                        "country": "Turkey",
+                        "date": "2009-06-01T00:00:00Z",
+                        "issn": [
+                            "1307-6086"
+                        ],
+                        "language": [
+                            "English",
+                            "Turkish"
+                        ],
+                        "license": [
+                            "CC by-nc-nd"
+                        ],
+                        "publisher": [
+                            "Necatibey Faculty of Education "
+                        ],
+                        "schema_code": [
+                            "LCC:L",
+                            "LCC:LC8-6691"
+                        ],
+                        "schema_subject": [
+                            "DOAJ:Education",
+                            "DOAJ:Social Sciences",
+                            "LCC:Education",
+                            "LCC:Special aspects of education"
+                        ],
+                        "subject": [
+                            "Special aspects of education",
+                            "Education",
+                            "Social Sciences"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad253b3711b4544a4a38823b0d26995",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "Of 396 Pseudomonas aeruginosa strains isolated from hospital sewage, the blaSPM-1 gene was confirmed in nine. This is the first report of environmental P. aeruginosa strains carrying the blaSPM-1 gene in Brazil. The carbapenem resistance, already disseminated among clinical isolates, has been detected among environmental isolates.<br>Ao todo, 396 isolados de Pseudomonas aeruginosa foram estudados. O gene blaSPM-1 foi encontrado em nove isolados de efluente hospitalar. Este estudo \u00e9 o primeiro relato de isolados ambientais de P. aeruginosa com o gene blaSPM-1no Brasil. A resist\u00eancia aos carbapen\u00eamicos, amplamente disseminada entre isolados cl\u00ednicos, j\u00e1 \u00e9 detectada em isolados ambientais.",
+                        "author": [
+                            {
+                                "name": "Daiane Bopp Fuentefria"
+                            },
+                            {
+                                "name": "Alessandra Einsfeld Ferreira"
+                            },
+                            {
+                                "name": "Tiago Gr\u00e4f"
+                            },
+                            {
+                                "name": "Gertrudes Cor\u00e7\u00e3o"
+                            }
+                        ],
+                        "end_page": "85",
+                        "identifier": [
+                            {
+                                "id": "10.1590/S1517-83822009000100013",
+                                "type": "doi"
+                            },
+                            {
+                                "id": "1517-8382",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "1678-4405",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "BR",
+                            "language": [
+                                "English",
+                                "Portuguese"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by-nc",
+                                    "type": "CC by-nc"
+                                }
+                            ],
+                            "number": "1",
+                            "publisher": "Sociedade Brasileira de Microbiologia",
+                            "title": "Brazilian Journal of Microbiology",
+                            "volume": "40"
+                        },
+                        "keywords": [
+                            "Metalo-&#946;-Lactamases",
+                            "efluente hospitalar",
+                            "P. aeruginosa",
+                            "resist\u00eancia bacteriana",
+                            "Metallo-&#946;-Lactamases",
+                            "hospital sewage",
+                            "P. aeruginosa",
+                            "bacterial resistance"
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1517-83822009000100013"
+                            }
+                        ],
+                        "month": "03",
+                        "start_page": "82",
+                        "subject": [
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology and Life Sciences"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology and Life Sciences"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            }
+                        ],
+                        "title": "Spread of Metallo-&#946;-lactamases: screening reveals the presence of a BLA SPM-1 gene in hospital sewage in southern Brazil Dissemina\u00e7\u00e3o de Metalo-&#946;-Lactamases: triagem revela a presen\u00e7a do gene BLA SPM-1 em efluente hospitalar no Sul do Brasil",
+                        "year": "2009"
+                    },
+                    "created_date": "2013-09-04T15:10:58Z",
+                    "id": "aad253b3711b4544a4a38823b0d26995",
+                    "index": {
+                        "classification": [
+                            "Biology and Life Sciences",
+                            "Science",
+                            "Biology",
+                            "Microbiology"
+                        ],
+                        "country": "Brazil",
+                        "date": "2009-03-01T00:00:00Z",
+                        "issn": [
+                            "1678-4405",
+                            "1517-8382"
+                        ],
+                        "language": [
+                            "Portuguese",
+                            "English"
+                        ],
+                        "license": [
+                            "CC by-nc"
+                        ],
+                        "publisher": [
+                            "Sociedade Brasileira de Microbiologia"
+                        ],
+                        "schema_code": [
+                            "LCC:Q",
+                            "LCC:QR1-502"
+                        ],
+                        "schema_subject": [
+                            "LCC:Microbiology",
+                            "DOAJ:Biology and Life Sciences",
+                            "DOAJ:Microbiology",
+                            "LCC:Science",
+                            "DOAJ:Biology"
+                        ],
+                        "subject": [
+                            "Biology and Life Sciences",
+                            "Science",
+                            "Biology",
+                            "Microbiology"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad2896bbdf24bdf85200c9f0190093c",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "OBJETIVO: Verificar se, em crian\u00e7as e adolescentes sem rinossinusite, a presen\u00e7a de opacifica\u00e7\u00f5es dos seios paranasais implica em maior risco de desenvolvimento posterior de sintomas do trato respirat\u00f3rio superior. M\u00c9TODOS: Estudo prospectivo de coorte, com pacientes entre 0 e 18 anos, submetidos \u00e0 tomografia computadorizada do cr\u00e2nio por indica\u00e7\u00f5es n\u00e3o relacionadas \u00e0 rinossinusite. As opacifica\u00e7\u00f5es sinusais foram aferidas pelo escore raz\u00e3o opacifica\u00e7\u00e3o/desenvolvimento. A evolu\u00e7\u00e3o cl\u00ednica dos pacientes foi ent\u00e3o avaliada por question\u00e1rios durante o m\u00eas que se seguia ao exame. RESULTADOS: Dos 106 pacientes inclu\u00eddos, as opacidades acometeram 56%, a maioria de espessamento mucoso. Opacidades intensas, ditas suspeitas (escore > 15), impuseram maior risco de desenvolvimento de sintomas no seguimento (odds ratio = 2,74; IC95%:1,10-6,83), em compara\u00e7\u00e3o aos exames normais ou \u00e0s opacidades discretas. CONCLUS\u00c3O: Opacidades tomogr\u00e1ficas sinusais incidentais em crian\u00e7as e adolescentes oferecem risco de desenvolvimento futuro de quadro cl\u00ednico respirat\u00f3rio quando intensas.<br>OBJECTIVE: To determine whether the presence of opacification in the paranasal sinuses of children and adolescents without rhinosinusitis implies an increased risk of later development of upper respiratory tract symptoms. METHODS: This was a prospective study of a cohort of patients aged 0 to 18 years who underwent computerized tomography (CT) scans for indications unrelated to rhinosinusitis. Sinus opacification was evaluated using an opacification/development ratio score. The patients\u2019 clinical progression was followed up using a questionnaire for 1 month after the scans. RESULTS: Fifty-six percent (56%) of the 106 patients enrolled in the study had opacity, the majority due to mucosal thickening. Intense opacification was defined as \"suspected\" (score > 15) and patients in this subset had a greater risk of developing symptoms during follow-up (odds ratio = 2.74; 95%CI 1.10-6.83) compared to those with no findings or discrete findings. CONCLUSION: Intense incidental sinus opacity on CT indicates a risk of future development of a clinical respiratory condition.",
+                        "author": [
+                            {
+                                "name": "Severino A. de Ara\u00fajo-Neto"
+                            },
+                            {
+                                "name": "Em\u00edlio C. E. Baracat"
+                            }
+                        ],
+                        "end_page": "438",
+                        "identifier": [
+                            {
+                                "id": "10.1590/S0021-75572011000500011",
+                                "type": "doi"
+                            },
+                            {
+                                "id": "0021-7557",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "1678-4782",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "BR",
+                            "language": [
+                                "English",
+                                "Portuguese"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by-nc",
+                                    "type": "CC by-nc"
+                                }
+                            ],
+                            "number": "5",
+                            "publisher": "Sociedade Brasileira de Pediatria",
+                            "title": "Jornal de Pediatria",
+                            "volume": "87"
+                        },
+                        "keywords": [
+                            "Rinossinusite",
+                            "tomografia computadorizada",
+                            "diagn\u00f3stico",
+                            "Rhinosinusitis",
+                            "computerized tomography",
+                            "diagnosis"
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0021-75572011000500011"
+                            }
+                        ],
+                        "month": "10",
+                        "start_page": "433",
+                        "subject": [
+                            {
+                                "code": "RJ1-570",
+                                "scheme": "LCC",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "RJ1-570",
+                                "scheme": "LCC",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "RJ1-570",
+                                "scheme": "LCC",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "code": "RJ1-570",
+                                "scheme": "LCC",
+                                "term": "Pediatrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            }
+                        ],
+                        "title": "Evolu\u00e7\u00e3o cl\u00ednica de altera\u00e7\u00f5es tomogr\u00e1ficas incidentais de seios paranasais em indiv\u00edduos assintom\u00e1ticos: estudo de coorte Clinical progression of incidental tomographic findings in paranasal sinuses of asymptomatic individuals: cohort study",
+                        "year": "2011"
+                    },
+                    "created_date": "2013-09-04T23:54:14Z",
+                    "id": "aad2896bbdf24bdf85200c9f0190093c",
+                    "index": {
+                        "classification": [
+                            "Medicine",
+                            "Health Sciences",
+                            "Medicine (General)",
+                            "Pediatrics"
+                        ],
+                        "country": "Brazil",
+                        "date": "2011-10-01T00:00:00Z",
+                        "issn": [
+                            "0021-7557",
+                            "1678-4782"
+                        ],
+                        "language": [
+                            "Portuguese",
+                            "English"
+                        ],
+                        "license": [
+                            "CC by-nc"
+                        ],
+                        "publisher": [
+                            "Sociedade Brasileira de Pediatria"
+                        ],
+                        "schema_code": [
+                            "LCC:RJ1-570",
+                            "LCC:R"
+                        ],
+                        "schema_subject": [
+                            "LCC:Pediatrics",
+                            "DOAJ:Medicine (General)",
+                            "DOAJ:Health Sciences",
+                            "LCC:Medicine",
+                            "DOAJ:Pediatrics"
+                        ],
+                        "subject": [
+                            "Medicine",
+                            "Health Sciences",
+                            "Medicine (General)",
+                            "Pediatrics"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad2af14bed34a7287a994a2d97760bc",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "<strong>Problem statement:</strong> Chemotherapeutic drugs have been used to treat &#13; malignancy for over 50 years, but the potential of cytotoxic agents to suppress &#13; immunity and interfere with Immunosurveillance (IS) of cancer has been largely &#13; ignored. Assuming that the immune control of the cancer had a priori already failed, &#13; the effect was not considered to have a major impact on treatment outcome. <strong>Approach: &#13; </strong>We reviewed the literature of what is known about the effect of anti-cancer &#13; on immune function and their effects. <strong>Results:</strong> Increasing evidence &#13; suggested a role for tumor specific lymphocytes, as evidenced by the Graft-versus-Leukemia &#13; effect after allogeneic stem cell transplantation and infiltrating tumor-specific &#13; lymphocytes. A strong relationship between robust lymphocyte recovery after chemotherapy &#13; and favorable outcome, further suggested that cell mediated immunity played an &#13; important role in preventing disease recurrence after bulk reduction of the tumor &#13; by cytotoxic agents. <strong>Conclusion: </strong>We were beginning to discover &#13; mechanisms whereby cancer treatments favorably affect interactions between the &#13; immune system and the malignancy. However, at present our ability to use cancer &#13; chemotherapy to reboot the immune system in a controlled fashion was limited. &#13; Future strategies may allow us to more efficiently link cancer treatments with &#13; immune function, not only restoring but further enhancing IS by boosting T lymphocyte &#13; and Natural Killer (NK) cell recovery, increasing tumor susceptibility to T cell &#13; or NK cell attack and inducing Tumor-Specific Antigen (TSA) specific T cell responded &#13; with vaccines.",
+                        "author": [
+                            {
+                                "name": "Katarina L. Blanc"
+                            },
+                            {
+                                "name": "John Barret"
+                            }
+                        ],
+                        "end_page": "16",
+                        "identifier": [
+                            {
+                                "id": "1553-619X",
+                                "type": "pissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "US",
+                            "language": [
+                                "English"
+                            ],
+                            "number": "1",
+                            "publisher": "Science Publications",
+                            "title": "American Journal of Immunology",
+                            "volume": "5"
+                        },
+                        "keywords": [
+                            "</keyword><keyword>Immunosurveillance",
+                            "immune recovery",
+                            "cancer chemotherapy"
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.thescipub.com/pdf/10.3844/ajisp.2009.8.16"
+                            }
+                        ],
+                        "month": "01",
+                        "start_page": "8",
+                        "subject": [
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology and Life Sciences"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Biology and Life Sciences"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "code": "QR1-502",
+                                "scheme": "LCC",
+                                "term": "Microbiology"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            }
+                        ],
+                        "title": "Cancer Chemotherapy and Immune Regulation",
+                        "year": "2009"
+                    },
+                    "created_date": "2013-06-01T07:47:31Z",
+                    "id": "aad2af14bed34a7287a994a2d97760bc",
+                    "index": {
+                        "classification": [
+                            "Biology and Life Sciences",
+                            "Science",
+                            "Biology",
+                            "Microbiology"
+                        ],
+                        "country": "United States",
+                        "date": "2009-01-01T00:00:00Z",
+                        "issn": [
+                            "1553-619X"
+                        ],
+                        "language": [
+                            "English"
+                        ],
+                        "publisher": [
+                            "Science Publications"
+                        ],
+                        "schema_code": [
+                            "LCC:Q",
+                            "LCC:QR1-502"
+                        ],
+                        "schema_subject": [
+                            "LCC:Microbiology",
+                            "DOAJ:Biology and Life Sciences",
+                            "DOAJ:Microbiology",
+                            "LCC:Science",
+                            "DOAJ:Biology"
+                        ],
+                        "subject": [
+                            "Biology and Life Sciences",
+                            "Science",
+                            "Biology",
+                            "Microbiology"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad2c91cec9e4d7594bd1567019c9d93",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "With the purpose of deepening in the understanding of the mechanisms of protection of anticorrosive pigments based on iron oxides, this work has been carried out on the production of pure magnetite, and copper and chromium doped magnetite, which were evaluated by different characterization techniques. The paints were prepared with a solvent less epoxy resin maintaining the Pigment Volume Content near the Practical Critical value (CPVC), established for each pigment. The paints were applied on polished steel and monitored with electrochemical techniques at total immersion conditions. Permeability and impedance measurements of free films were also done. Impedance data were simulated with the Boukamp software. Results show that the paints pigmented with doped magnetite present better behavior than a paint prepared with commercial hematite.&lt;br&gt;&lt;br&gt;Con el prop\u00f3sito de profundizar en el entendimiento de los mecanismos de protecci\u00f3n de los pigmentos anticorrosivos a base de \u00f3xidos de hierro, se sintetizaron y caracterizaron magnetitas puras y dopadas con cobre y cromo, con las cuales se prepararon pinturas anticorrosivas que fueron evaluadas en ensayos acelerados de campo y laboratorio. Las pinturas fueron especialmente preparadas con una resina libre de solvente manteniendo la Concentraci\u00f3n Pigmentaria en Volumen cercana al valor Cr\u00edtico (CPVC), establecida para cada pigmento. Las pinturas fueron aplicadas sobre acero pulido y evaluadas con t\u00e9cnicas electroqu\u00edmicas en condiciones de inmersi\u00f3n total. Para complementar el estudio se realizaron medidas de permeabilidad e impedancia sobre las pel\u00edculas libres. Los datos de impedancia se simularon con el programa Boukamp. Los resultados muestran que las pinturas pigmentadas con magnetitas dopadas presentan mejor comportamiento que las preparadas con hematita comercial. ",
+                        "author": [
+                            {
+                                "name": "Escobar, D. M."
+                            },
+                            {
+                                "name": "Arroyave, C."
+                            },
+                            {
+                                "name": "Jaramillo, F."
+                            },
+                            {
+                                "name": "Mattos, O. R."
+                            },
+                            {
+                                "name": "Margarit, I. C."
+                            },
+                            {
+                                "name": "Calder\u00f3n, J."
+                            }
+                        ],
+                        "end_page": "103",
+                        "identifier": [
+                            {
+                                "id": "0034-8570",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "1988-4222",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "ES",
+                            "language": [
+                                "Spanish",
+                                "English"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by-nc",
+                                    "type": "CC by-nc"
+                                }
+                            ],
+                            "number": "Extra",
+                            "publisher": "Consejo Superior de Investigaciones Cient\u00edficas",
+                            "title": "Revista de Metalurgia",
+                            "volume": "39"
+                        },
+                        "keywords": [
+                            "Anticorrosive paints",
+                            "Doped magnetite",
+                            "Hematite",
+                            "Permeability",
+                            "Impedance",
+                            "Pinturas anticorrosivas",
+                            "Magnetitas dopadas",
+                            "Hematita",
+                            "Permeabilidad",
+                            "Impedancia"
+                        ],
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://revistademetalurgia.revistas.csic.es/index.php/revistademetalurgia/article/view/1104/1116"
+                            }
+                        ],
+                        "month": "12",
+                        "start_page": "97",
+                        "subject": [
+                            {
+                                "code": "TN1-997",
+                                "scheme": "LCC",
+                                "term": "Mining engineering. Metallurgy"
+                            },
+                            {
+                                "code": "T",
+                                "scheme": "LCC",
+                                "term": "Technology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mining and Metallurgy"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Technology and Engineering"
+                            },
+                            {
+                                "code": "TN1-997",
+                                "scheme": "LCC",
+                                "term": "Mining engineering. Metallurgy"
+                            },
+                            {
+                                "code": "T",
+                                "scheme": "LCC",
+                                "term": "Technology"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mining and Metallurgy"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Technology and Engineering"
+                            },
+                            {
+                                "code": "TN1-997",
+                                "scheme": "LCC",
+                                "term": "Mining engineering. Metallurgy"
+                            },
+                            {
+                                "code": "T",
+                                "scheme": "LCC",
+                                "term": "Technology"
+                            },
+                            {
+                                "code": "TN1-997",
+                                "scheme": "LCC",
+                                "term": "Mining engineering. Metallurgy"
+                            },
+                            {
+                                "code": "T",
+                                "scheme": "LCC",
+                                "term": "Technology"
+                            }
+                        ],
+                        "title": "Electrochemical assessment of magnetite anticorrosive paints",
+                        "year": "2003"
+                    },
+                    "created_date": "2010-12-17T16:23:25Z",
+                    "id": "aad2c91cec9e4d7594bd1567019c9d93",
+                    "index": {
+                        "classification": [
+                            "Mining and Metallurgy",
+                            "Mining engineering. Metallurgy",
+                            "Technology",
+                            "Technology and Engineering"
+                        ],
+                        "country": "Spain",
+                        "date": "2003-12-01T00:00:00Z",
+                        "issn": [
+                            "1988-4222",
+                            "0034-8570"
+                        ],
+                        "language": [
+                            "English",
+                            "Spanish"
+                        ],
+                        "license": [
+                            "CC by-nc"
+                        ],
+                        "publisher": [
+                            "Consejo Superior de Investigaciones Cient\u00edficas"
+                        ],
+                        "schema_code": [
+                            "LCC:T",
+                            "LCC:TN1-997"
+                        ],
+                        "schema_subject": [
+                            "LCC:Technology",
+                            "DOAJ:Mining and Metallurgy",
+                            "DOAJ:Technology and Engineering",
+                            "LCC:Mining engineering. Metallurgy"
+                        ],
+                        "subject": [
+                            "Mining and Metallurgy",
+                            "Mining engineering. Metallurgy",
+                            "Technology",
+                            "Technology and Engineering"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad444626b9c4464a84c6d49001a491f",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "abstract": "<p/> <p>We investigate the generalized Hyers-Ulam-Rassias stability problem in quasi-<inline-formula> <graphic file=\"1029-242X-2010-368981-i2.gif\"/></inline-formula>-normed spaces and then the stability by using a subadditive function for the quintic function <inline-formula> <graphic file=\"1029-242X-2010-368981-i3.gif\"/></inline-formula> such that <inline-formula> <graphic file=\"1029-242X-2010-368981-i4.gif\"/></inline-formula>, for all <inline-formula> <graphic file=\"1029-242X-2010-368981-i5.gif\"/></inline-formula>.</p>",
+                        "author": [
+                            {
+                                "name": "Kang Dongseung"
+                            },
+                            {
+                                "name": "Koh Heejeong"
+                            },
+                            {
+                                "name": "Cho InGoo"
+                            }
+                        ],
+                        "identifier": [
+                            {
+                                "id": "1025-5834",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "1029-242X",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "DE",
+                            "language": [
+                                "English"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by",
+                                    "type": "CC by"
+                                }
+                            ],
+                            "number": "1",
+                            "publisher": "BioMed Central",
+                            "title": "Journal of Inequalities and Applications",
+                            "volume": "2010"
+                        },
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.journalofinequalitiesandapplications.com/content/2010/368981"
+                            }
+                        ],
+                        "start_page": "368981",
+                        "subject": [
+                            {
+                                "code": "QA1-939",
+                                "scheme": "LCC",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mathematics and Statistics"
+                            },
+                            {
+                                "code": "QA1-939",
+                                "scheme": "LCC",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Mathematics and Statistics"
+                            },
+                            {
+                                "code": "QA1-939",
+                                "scheme": "LCC",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            },
+                            {
+                                "code": "QA1-939",
+                                "scheme": "LCC",
+                                "term": "Mathematics"
+                            },
+                            {
+                                "code": "Q",
+                                "scheme": "LCC",
+                                "term": "Science"
+                            }
+                        ],
+                        "title": "Stability Problems of Quintic Mappings in Quasi-<inline-formula> <graphic file=\"1029-242X-2010-368981-i1.gif\"/></inline-formula>-Normed Spaces",
+                        "year": "2010"
+                    },
+                    "created_date": "2011-11-19T00:00:00Z",
+                    "id": "aad444626b9c4464a84c6d49001a491f",
+                    "index": {
+                        "classification": [
+                            "Mathematics and Statistics",
+                            "Mathematics",
+                            "Science"
+                        ],
+                        "country": "Germany",
+                        "date": "2010-01-01T00:00:00Z",
+                        "issn": [
+                            "1029-242X",
+                            "1025-5834"
+                        ],
+                        "language": [
+                            "English"
+                        ],
+                        "license": [
+                            "CC by"
+                        ],
+                        "publisher": [
+                            "BioMed Central"
+                        ],
+                        "schema_code": [
+                            "LCC:QA1-939",
+                            "LCC:Q"
+                        ],
+                        "schema_subject": [
+                            "DOAJ:Mathematics and Statistics",
+                            "LCC:Mathematics",
+                            "DOAJ:Mathematics",
+                            "LCC:Science"
+                        ],
+                        "subject": [
+                            "Mathematics and Statistics",
+                            "Mathematics",
+                            "Science"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad474cc27594763b3e4a399aad86bce",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "end_page": "357",
+                        "identifier": [
+                            {
+                                "id": "0048-766X",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "0717-7526",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "CL",
+                            "language": [
+                                "Spanish"
+                            ],
+                            "number": "5",
+                            "publisher": "Sociedad Chilena de Obstetricia y Ginecolog\u00eda",
+                            "title": "Revista Chilena de Obstetricia y Ginecolog\u00eda",
+                            "volume": "73"
+                        },
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://www.scielo.cl/scielo.php?script=sci_arttext&pid=S0717-75262008000500014"
+                            }
+                        ],
+                        "start_page": "356",
+                        "subject": [
+                            {
+                                "code": "RG1-991",
+                                "scheme": "LCC",
+                                "term": "Gynecology and obstetrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Gynecology and Obstetrics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "RG1-991",
+                                "scheme": "LCC",
+                                "term": "Gynecology and obstetrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Gynecology and Obstetrics"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Medicine (General)"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Health Sciences"
+                            },
+                            {
+                                "code": "RG1-991",
+                                "scheme": "LCC",
+                                "term": "Gynecology and obstetrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            },
+                            {
+                                "code": "RG1-991",
+                                "scheme": "LCC",
+                                "term": "Gynecology and obstetrics"
+                            },
+                            {
+                                "code": "R",
+                                "scheme": "LCC",
+                                "term": "Medicine"
+                            }
+                        ],
+                        "title": "CON LA PRESENCIA DE MICHELLE BACHELET, PRESIDENTA DE LA REP\u00daBLICA DE CHILE; DE JENS STOLTENBERG, PRIMER MINISTRO DE NORUEGA; Y DE LA DRA. MIRTA ROSES, DIRECTORA DE LA ORGANIZACI\u00d3N PANAMERICANA DE LA SALUD, SE LANZA INICIATIVA REGIONAL DE LOS OBJETIVOS DEL MILENIO 4 Y 5, PARA LA REDUCCI\u00d3N DE LA MORTALIDAD INFANTIL Y MEJORA DE LA SALUD",
+                        "year": "2008"
+                    },
+                    "created_date": "2013-08-28T23:13:08Z",
+                    "id": "aad474cc27594763b3e4a399aad86bce",
+                    "index": {
+                        "classification": [
+                            "Medicine",
+                            "Medicine (General)",
+                            "Health Sciences",
+                            "Gynecology and Obstetrics",
+                            "Gynecology and obstetrics"
+                        ],
+                        "country": "Chile",
+                        "date": "2008-01-01T00:00:00Z",
+                        "issn": [
+                            "0048-766X",
+                            "0717-7526"
+                        ],
+                        "language": [
+                            "Spanish"
+                        ],
+                        "publisher": [
+                            "Sociedad Chilena de Obstetricia y Ginecolog\u00eda"
+                        ],
+                        "schema_code": [
+                            "LCC:RG1-991",
+                            "LCC:R"
+                        ],
+                        "schema_subject": [
+                            "LCC:Gynecology and obstetrics",
+                            "DOAJ:Health Sciences",
+                            "LCC:Medicine",
+                            "DOAJ:Gynecology and Obstetrics",
+                            "DOAJ:Medicine (General)"
+                        ],
+                        "subject": [
+                            "Medicine",
+                            "Medicine (General)",
+                            "Health Sciences",
+                            "Gynecology and Obstetrics",
+                            "Gynecology and obstetrics"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad47a7b2bae4a318623135daa5aec48",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "author": [
+                            {
+                                "name": "Kevin J. Barrett"
+                            },
+                            {
+                                "name": "Oswald J. Schmitz"
+                            }
+                        ],
+                        "identifier": [
+                            {
+                                "id": "10.1155/2013/690213",
+                                "type": "doi"
+                            },
+                            {
+                                "id": "1687-9368",
+                                "type": "pissn"
+                            },
+                            {
+                                "id": "1687-9376",
+                                "type": "eissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "EG",
+                            "language": [
+                                "English"
+                            ],
+                            "license": [
+                                {
+                                    "title": "CC by",
+                                    "type": "CC by"
+                                }
+                            ],
+                            "publisher": "Hindawi Publishing Corporation",
+                            "title": "International Journal of Forestry Research",
+                            "volume": "2013"
+                        },
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "http://dx.doi.org/10.1155/2013/690213"
+                            }
+                        ],
+                        "subject": [
+                            {
+                                "code": "SD1-669.5",
+                                "scheme": "LCC",
+                                "term": "Forestry"
+                            },
+                            {
+                                "code": "S",
+                                "scheme": "LCC",
+                                "term": "Agriculture"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Forestry"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Agriculture and Food Sciences"
+                            },
+                            {
+                                "code": "SD1-669.5",
+                                "scheme": "LCC",
+                                "term": "Forestry"
+                            },
+                            {
+                                "code": "S",
+                                "scheme": "LCC",
+                                "term": "Agriculture"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Forestry"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Agriculture and Food Sciences"
+                            },
+                            {
+                                "code": "SD1-669.5",
+                                "scheme": "LCC",
+                                "term": "Forestry"
+                            },
+                            {
+                                "code": "S",
+                                "scheme": "LCC",
+                                "term": "Agriculture"
+                            },
+                            {
+                                "code": "SD1-669.5",
+                                "scheme": "LCC",
+                                "term": "Forestry"
+                            },
+                            {
+                                "code": "S",
+                                "scheme": "LCC",
+                                "term": "Agriculture"
+                            }
+                        ],
+                        "title": "Effects of Deer Settling Stimulus and Deer Density on Regeneration in a Harvested Southern New England Forest",
+                        "year": "2013"
+                    },
+                    "created_date": "2013-09-17T14:46:50Z",
+                    "id": "aad47a7b2bae4a318623135daa5aec48",
+                    "index": {
+                        "classification": [
+                            "Forestry",
+                            "Agriculture and Food Sciences",
+                            "Agriculture"
+                        ],
+                        "country": "Egypt",
+                        "date": "2013-01-01T00:00:00Z",
+                        "issn": [
+                            "1687-9368",
+                            "1687-9376"
+                        ],
+                        "language": [
+                            "English"
+                        ],
+                        "license": [
+                            "CC by"
+                        ],
+                        "publisher": [
+                            "Hindawi Publishing Corporation"
+                        ],
+                        "schema_code": [
+                            "LCC:S",
+                            "LCC:SD1-669.5"
+                        ],
+                        "schema_subject": [
+                            "LCC:Agriculture",
+                            "DOAJ:Forestry",
+                            "DOAJ:Agriculture and Food Sciences",
+                            "LCC:Forestry"
+                        ],
+                        "subject": [
+                            "Forestry",
+                            "Agriculture and Food Sciences",
+                            "Agriculture"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            },
+            {
+                "_id": "aad494c538ee41619b7b6f4c67a211c5",
+                "_index": "doaj",
+                "_score": 1.4549913,
+                "_source": {
+                    "admin": {
+                        "in_doaj": true
+                    },
+                    "bibjson": {
+                        "author": [
+                            {
+                                "name": "Editorial Board"
+                            }
+                        ],
+                        "identifier": [
+                            {
+                                "id": "2159-7855",
+                                "type": "pissn"
+                            }
+                        ],
+                        "journal": {
+                            "country": "US",
+                            "language": [
+                                "English"
+                            ],
+                            "number": "1",
+                            "publisher": "University of Arizona",
+                            "title": "Journal of Methods and Measurement in the Social Sciences",
+                            "volume": "1"
+                        },
+                        "link": [
+                            {
+                                "type": "fulltext",
+                                "url": "https://journals.uair.arizona.edu/index.php/jmmss/article/view/79"
+                            }
+                        ],
+                        "subject": [
+                            {
+                                "code": "H1-99",
+                                "scheme": "LCC",
+                                "term": "Social sciences (General)"
+                            },
+                            {
+                                "code": "H",
+                                "scheme": "LCC",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "code": "H1-99",
+                                "scheme": "LCC",
+                                "term": "Social sciences (General)"
+                            },
+                            {
+                                "code": "H",
+                                "scheme": "LCC",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "scheme": "DOAJ",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "code": "H1-99",
+                                "scheme": "LCC",
+                                "term": "Social sciences (General)"
+                            },
+                            {
+                                "code": "H",
+                                "scheme": "LCC",
+                                "term": "Social Sciences"
+                            },
+                            {
+                                "code": "H1-99",
+                                "scheme": "LCC",
+                                "term": "Social sciences (General)"
+                            },
+                            {
+                                "code": "H",
+                                "scheme": "LCC",
+                                "term": "Social Sciences"
+                            }
+                        ],
+                        "title": "Guide for Contributors",
+                        "year": "2010"
+                    },
+                    "created_date": "2013-03-22T19:11:52Z",
+                    "id": "aad494c538ee41619b7b6f4c67a211c5",
+                    "index": {
+                        "classification": [
+                            "Social Sciences",
+                            "Social sciences (General)"
+                        ],
+                        "country": "United States",
+                        "date": "2010-01-01T00:00:00Z",
+                        "issn": [
+                            "2159-7855"
+                        ],
+                        "language": [
+                            "English"
+                        ],
+                        "publisher": [
+                            "University of Arizona"
+                        ],
+                        "schema_code": [
+                            "LCC:H1-99",
+                            "LCC:H"
+                        ],
+                        "schema_subject": [
+                            "LCC:Social Sciences",
+                            "LCC:Social sciences (General)",
+                            "DOAJ:Social Sciences"
+                        ],
+                        "subject": [
+                            "Social Sciences",
+                            "Social sciences (General)"
+                        ]
+                    },
+                    "last_updated": "2014-04-22T22:14:40Z"
+                },
+                "_type": "article"
+            }
+        ],
+        "max_score": 1.4549913,
+        "total": 1674233
+    },
+    "timed_out": false,
+    "took": 72
+}

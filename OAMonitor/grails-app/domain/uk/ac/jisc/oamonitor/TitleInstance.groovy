@@ -1,11 +1,11 @@
 package uk.ac.jisc.oamonitor
 
 import javax.persistence.Transient
-import uk.ac.jisc.oamonitor.GOKbTextUtils
-import uk.ac.jisc.oamonitor.DomainClassExtender
+
 import groovy.util.logging.*
 
 @Log4j
+//titleinstance is for example a journal, monocle, and so fourth
 class TitleInstance extends KBComponent {
 
   // title is now NAME in the base component class...
@@ -57,7 +57,7 @@ class TitleInstance extends KBComponent {
   }
 
   static hasByCombo = [
-    issuer		: Org,
+    issuer		    : Org,
     translatedFrom	: TitleInstance,
     absorbedBy		: TitleInstance,
     mergedWith		: TitleInstance,
@@ -66,7 +66,7 @@ class TitleInstance extends KBComponent {
   ]
 
   static manyByCombo = [
-    tipps : TitleInstancePackagePlatform,
+    tipps     : TitleInstancePackagePlatform,
     publisher : Org,
     //        ids     :  Identifier
   ]
@@ -264,4 +264,11 @@ class TitleInstance extends KBComponent {
     }
     return result;
   }
+
+
+    //Get all the title instances using the many to many link
+    Set<Article> getTitleInstances() //i.e. the journals
+    {
+        Appearence.findAllByTitleInstance(this).collect { it.article }
+    }
 }

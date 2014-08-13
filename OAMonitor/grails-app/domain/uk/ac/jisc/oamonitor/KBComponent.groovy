@@ -7,8 +7,7 @@ import javax.persistence.Transient
 
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.codehaus.groovy.grails.commons.GrailsDomainClassProperty
-import uk.ac.jisc.oamonitor.GOKbTextUtils
-import uk.ac.jisc.oamonitor.ClassUtils
+
 
 /**
  * Abstract base class for OA Monitor Components.
