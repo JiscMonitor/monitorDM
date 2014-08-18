@@ -57,6 +57,7 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
         compile "org.springframework:spring-orm:$springVersion"
+        compile "org.jadira.usertype:usertype.jodatime:1.9"
     }
 
     plugins {
@@ -68,7 +69,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.6'
         compile ":asset-pipeline:1.8.7"
         compile ":rest:0.8"
-
+        compile ":joda-time:1.5"
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.3" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"

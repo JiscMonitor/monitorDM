@@ -48,17 +48,21 @@ class Person {
 
             identifiers.each {key, value ->
                 switch (key.toLowerCase()) {
-                    case "essin":
-                        person.addToEisin(Identifier.lookupOrCreateCanonicalIdentifier(value))
+                    case "eissn":
+                        println("EISSN\t"+"Key :"+key+"\tvalue :"+value)
+                        person.addToEisin(Identifier.lookupOrCreateCanonicalIdentifier(key,value)) //todo ask ian if this is the correct method to use?
                         break
-                    case "pssin":
-                        person.addToPisin(Identifier.lookupOrCreateCanonicalIdentifier(value))
+                    case "pissn":
+                        println("PISSN\t"+"Key :"+key+"\tvalue :"+value)
+                        person.addToPisin(Identifier.lookupOrCreateCanonicalIdentifier(key,value))
                         break
                     case "orcid":
-                        person.addToOrcids(Identifier.lookupOrCreateCanonicalIdentifier(value))
+                        println("ORCID\t"+"Key :"+key+"\tvalue :"+value)
+                        person.addToOrcids(Identifier.lookupOrCreateCanonicalIdentifier(key,value))
                         break
                     default:
-                        println("Unknown key type of identifier:\t" + key)
+                        println("Unknown key type of identifier:\t Key :"+key+"\tValue :"+value)
+                        break
                 }
             }
             person.save(failOnError: true)
@@ -69,12 +73,12 @@ class Person {
             {
                 identifiers.each {key, value ->
                     switch (key.toLowerCase()) {
-                        case "essin":
+                        case "eissn":
                             person = Person.findByEisin(value)
                             if (person.fullname.equalsIgnoreCase(authorName)) //ensure identifier is for the author we're searching for
                                 return true //exit closure
                             break
-                        case "pssin":
+                        case "pissn":
                             person = Person.findByPisin(value)
                             if (person.fullname.equalsIgnoreCase(authorName))
                                 return true
