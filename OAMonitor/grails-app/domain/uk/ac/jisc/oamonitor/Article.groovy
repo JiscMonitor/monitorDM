@@ -1,13 +1,18 @@
 package uk.ac.jisc.oamonitor
 
-class Article extends TitleInstance {
+class Article extends KBComponent {
 
     String title
 
     static belongsTo = [Person] //todo discuss with ian
 
     static hasMany = [
-            authors:Person
+            authors:Person,
+            appearences:Appearence
+    ]
+
+    static mappedBy = [
+      appearences:'article'
     ]
 
     //static hasOne = [leadAuthor:Person] //no way to tell from data
