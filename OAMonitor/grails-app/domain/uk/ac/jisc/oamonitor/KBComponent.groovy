@@ -804,4 +804,36 @@ abstract class KBComponent {
 
     hasOp
   }
+
+  @Transient
+  def lookupByIdentifierSet(identifier_map) {
+    def result = null;
+    if ( identifier_map.size() > 0 ) {
+      int ctr = 0
+      def params = []
+      def base_query = "select c from KBComponent as c join c.outgoingCombos as oc join oc.fromComponent as id where oc.type.value='KBComponent.Ids' AND ( "
+      identifier_map.each { 
+        if ( ctr > 0 ) {
+          base_query += ' OR '
+        }
+        base_query += " ( id.namespace.value = ? AND id.value = ? ) "
+        params.add(it.namespace)
+        params.add(it.value)
+      }
+      base_query += " ) "
+    }
+
+    log.debug("Run : ${base_query}, ${params}");
+    def matched_components = KBComponent.executeQuery(base_query, params)
+    if ( matched_components.size() == 0 ) {
+    }
+    else if ( matched_components.size() == 1 ) {
+      result = matched_components[0]
+    }
+    else {
+      throw new Exception("List of identifiers match more than one component");
+    }
+    result
+  }
+
 }

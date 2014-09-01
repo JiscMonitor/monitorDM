@@ -149,7 +149,7 @@ class OACrawlerService {
                     // See if we can identify a person based on identifiers
                     // II: The only instance of an orcid we have is in a record where it's embedded in the email as in
                     //     email: "ORCID: 0000-0001-5907-2795 stet@ukr.net" - We probably need to parse this somehow
-                    def person = Person.lookupByIdentifier([
+                    def person = Person.lookupByIdentifierSet([
                                                              [namespace:'email',value:author.email],
                                                              [namespace:'orcid',value:author.orcid]
                                                            ])

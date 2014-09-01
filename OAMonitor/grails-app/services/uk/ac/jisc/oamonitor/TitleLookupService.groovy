@@ -46,8 +46,8 @@ class TitleLookupService {
           result['class_one'] = true
 
           // If we find an ID then lookup the components.
-          Set<KBComponent> comp = the_id.identifiedComponents
-          comp.each { KBComponent c ->
+          the_id.reload()
+          the_id.identifiedComponents.each { KBComponent c ->
 
             // Ensure we're not looking at a Hibernate Proxy class representation of the class
             KBComponent dproxied = ClassUtils.deproxy(c);
