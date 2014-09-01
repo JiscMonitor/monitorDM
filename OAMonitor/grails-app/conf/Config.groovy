@@ -8,6 +8,13 @@
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 grails.config.locations = [ "file:${userHome}/.grails/${appName}-config.groovy"]
 
+identifiers.class_ones = [
+  "issn",
+  "eissn",
+  "doi",
+  "isbn"
+] as Set
+
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]

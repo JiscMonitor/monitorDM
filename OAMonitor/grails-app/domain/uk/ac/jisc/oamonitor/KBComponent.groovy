@@ -313,6 +313,8 @@ abstract class KBComponent {
     normname  (nullable:true, blank:false, maxSize:2048)
     status    (nullable:true, blank:false)
     editStatus  (nullable:true, blank:false)
+    reference  (nullable:true, blank:false)
+    provenance  (nullable:true, blank:false)
     source (nullable:true, blank:false)
   }
 

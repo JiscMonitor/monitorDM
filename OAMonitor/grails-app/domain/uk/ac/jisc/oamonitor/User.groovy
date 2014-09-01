@@ -6,6 +6,7 @@ class User {
 
 	String username
 	String password
+	String display
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -19,7 +20,7 @@ class User {
 	}
 
 	static mapping = {
-		password column: '`password`'
+		password column: 'passwd'
 	}
 
 	Set<Role> getAuthorities() {

@@ -12,7 +12,9 @@ class TitleLookupService {
   //    find(title, issn, eissn, null, null)
   //  }
 
-  private Map class_one_match (def ids) {
+  private Map classOneMatch (def ids) {
+
+    log.debug("classOneMatch(${ids})");
 
     // Get the class 1 identifier namespaces.
     Set<String> class_one_ids = grailsApplication.config.identifiers.class_ones
@@ -28,17 +30,17 @@ class TitleLookupService {
     // Go through each of the class_one_ids and look for a match.
     ids.each { id_def ->
 
-      if (id_def.type && id_def.value) {
+      if (id_def.namespace && id_def.value) {
 
         // id_def is map with keys 'type' and 'value'
-        Identifier the_id = Identifier.lookupOrCreateCanonicalIdentifier(id_def.type, id_def.value)
+        Identifier the_id = Identifier.lookupOrCreateCanonicalIdentifier(id_def.namespace, id_def.value)
 
         // Add the id.
         result['ids'] << the_id
 
         // We only treat a component as a match if the matching Identifer
         // is a class 1 identifier.
-        if (class_one_ids.contains(id_def.type)) {
+        if (class_one_ids.contains(id_def.namespace)) {
 
           // Flag class one is present.
           result['class_one'] = true
@@ -64,7 +66,7 @@ class TitleLookupService {
 
 
 
-  def find (String title, String publisher_name, def identifiers, def user = null) {
+  def lookup (title, publisher_name, identifiers, user = null) {
 
     // The TitleInstance
     TitleInstance the_title = null
@@ -73,7 +75,7 @@ class TitleLookupService {
     String norm_title = GOKbTextUtils.normaliseString(title)
 
     // Lookup any class 1 identifier matches
-    def results = class_one_match (identifiers)
+    def results = classOneMatch (identifiers)
 
     // The matches.
     List< KBComponent> matches = results['matches'] as List

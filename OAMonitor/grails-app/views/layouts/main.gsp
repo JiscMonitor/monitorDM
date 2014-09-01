@@ -39,24 +39,13 @@
             <sec:ifLoggedIn>
               <sec:ifAnyGranted roles="ROLE_ADMIN">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">System Admin</a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">System Admin<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="">Test</a></li>
-                    <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
-                    <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
-                    <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
+                    <li><g:link controller="admin" action="triggerHarvest">Trigger Harvest</g:link></li>
                   </ul>
                 </li>
               </sec:ifAnyGranted>
 
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Collections</a>
-                <ul class="dropdown-menu">
-                  <g:each in="${request.tlicolls}" var="c">
-                    <li><g:link controller="collection" action="index" id="${c.shortcode}">${c.name}</g:link></li>
-                  </g:each>
-                </ul>
-              </li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </sec:ifLoggedIn>

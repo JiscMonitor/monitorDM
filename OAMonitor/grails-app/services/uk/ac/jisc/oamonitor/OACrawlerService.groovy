@@ -19,10 +19,16 @@ import java.text.SimpleDateFormat
 
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html
 
-@Transactional @Log4j
+@Transactional 
+@Log4j
 class OACrawlerService {
 
     def titleLookupService
+
+    def harvestDOAJ() {
+      log.debug("harvestDOAJ()");
+      getRecordsSince('http://staging.doaj.cottagelabs.com/query/journal,article/_search', null, doaj_processing_closure, false)
+    }
 
     /**
      * Crawler through Elasticsearch records
@@ -33,8 +39,8 @@ class OACrawlerService {
      * @throws RuntimeException invalid URLS, un-encountered logic i.e grey areas
      * @return
      */
-    def getRecordsSince(es_endpoint, from_timestamp, closure, debug)
-    {
+    def getRecordsSince(es_endpoint, from_timestamp, closure, debug) {
+        log.debug("getRecordsSince(${es_endpoint},${from_timestamp},closure,${debug})");
         def http
         if (es_endpoint) {
             try {
@@ -48,6 +54,7 @@ class OACrawlerService {
             throw new RuntimeException("Elasticsearch URL not passed "+es_endpoint)
 
 
+
         def latestDate = Crawler.withCriteria {
             projections {
                 max 'latestCrawled' //most recently crawled time date
@@ -55,8 +62,9 @@ class OACrawlerService {
         }
         latestDate = latestDate.first()
 
-        if(!debug)
-        {
+        log.debug("Collecting since ${latestDate}");
+
+        if(!debug) {
             http.request(Method.GET,ContentType.JSON) { req->
                 response.success = { resp, json ->
                     println 'request OK'
@@ -79,8 +87,7 @@ class OACrawlerService {
                 }
             }
         }
-        else
-        {
+        else {
             //Test env code to pass JSON example Elasticsearch files
             def json = new JsonSlurper().parseText(es_endpoint)
             json.hits.hits.each { record ->
@@ -93,52 +100,71 @@ class OACrawlerService {
     def doaj_processing_closure = { record ->
         String title         = record._source.bibjson.title
         ArrayList authors    = record._source.bibjson.author
-        String journalTitle  = record._source.bibjson.journal.title
-        String publisherName = record._source.bibjson.journal.publisher
-        Map identifier = new HashMap() //add identifiers to a map for further processing
-        record._source.bibjson.identifier.each {identifier.put(it.type, it.id)}
-        String type          = record._type
-        //def identifier = Identifier.lookupOrCreateCanonicalIdentifier(issn, title) //could return null
+        String journalTitle  = record._source.bibjson.journal?.title
+        String publisherName = record._source.bibjson.journal?.publisher
 
-        TitleInstance titleInstance
+        List identifiers = []
+        record._source.bibjson.identifier.each { identifiers.add(['namespace':it.type, 'value':it.id]) }
+
+        String type          = record._type
+
+        TitleInstance journal
+
         switch (type.toLowerCase())
         {
             case "journal":
-                titleLookupService.find(journalTitle,publisherName,identifier,null) //Look for journals that article appear in and link
+                titleLookupService.lookup(journalTitle,publisherName,identifiers,null) //Look for journals that article appear in and link
                 break
-            case "article":
-                println("Jornal \t"+journalTitle + "\tpub name\t"+publisherName + "\tIndentifiers\t"+identifier)
-//                titleInstance           = titleLookupService.find(journalTitle,publisherName,identifier) //Look for journals that article appear in and link
 
-                Article article         = new Article(title: title, continuingSeries: null, provenance: null, reference:null)
+            case "article":
+                println("**Jornal** \t"+journalTitle + "\tpub name\t"+publisherName + "\tIndentifiers\t"+identifiers)
+                if ( journalTitle ) {
+                  // Don't use DOIs to lookup the journal (Might use a truncated form later)
+                  def journal_identifiers = []
+                  ['issn','eissn','pissn'].each { tp ->
+                    if ( record._source.bibjson.identifier[tp] != null ) {
+                      journal_identifiers.add('namespace':tp,'value':record._source.bibjson.identifier[tp])
+                    }
+                  }
+                  if ( journal_identifiers.size() > 0 ) {
+                    journal = titleLookupService.lookup(journalTitle,publisherName,journal_identifiers,null) 
+                  }
+                }
+
+                Article article = new Article(title: title, continuingSeries: null, provenance: null, reference:null)
                 if (!article.save()) {
                     article.errors.each {
-                        println(it) //todo Sort these strange validation errors on save about the inherited properties: "reference", "provenance", and "continuingSeries"
+                        log.error(it)
                     }
                 }
-                if (titleInstance && article)
-                    Appearence.create(article, titleInstance) //add to link table i.e. m:n
+
+                if (journal && article)
+                   Appearence.create(article, journal) //add to link table i.e. m:n
 
                 Set<Person> authorsList = new TreeSet<Person>() //returned or created person objects i.e. authors
                 Set eliminatingORCIDs   = new TreeSet() // Set of potential lists to be flattened to elimiate
 
                 authors.each {author ->
-                    def (currentAuthor, potentialORCIDs) = Person.createOrLookupAuthor(author.name, identifier)
-                    println(article)
-                    println("Current Author\t"+currentAuthor+"\tPotential ORCIDs :"+potentialORCIDs)
-//                    currentAuthor.addToArticles(article) //commented out temp to debug other issues
 
-                    if (!potentialORCIDs)
-                        eliminatingORCIDs.addAll(potentialORCIDs)
-                    authorsList.add(currentAuthor) //lookup or create author
-                }
+                    // See if we can identify a person based on identifiers
+                    // II: The only instance of an orcid we have is in a record where it's embedded in the email as in
+                    //     email: "ORCID: 0000-0001-5907-2795 stet@ukr.net" - We probably need to parse this somehow
+                    def person = Person.lookupByIdentifier([
+                                                             [namespace:'email',value:author.email],
+                                                             [namespace:'orcid',value:author.orcid]
+                                                           ])
 
-                if (authorsList.size() > 0)
-                    article.setAuthors(authorsList) ////link author to article
-                else
-                {
-                    log.debug("Problem with authors, which have been created from JSON :\t"+authors + "\tSet Contents: "+authorsList)
-                    throw new RuntimeException("Problem with authors, which have been created from JSON :\t"+authors + "\tSet Contents: "+authorsList)
+                    def article_name = new AuthorName(
+                                                      theArticle:article,
+                                                      matchedPerson:person, 
+                                                      fullname:author.name).save()
+                    // def (currentAuthor, potentialORCIDs) = Person.createOrLookupAuthor(author.name, identifier)
+                    // log.debug(article)
+                    // log.debug("Current Author\t"+currentAuthor+"\tPotential ORCIDs :"+potentialORCIDs)
+
+                    // if (!potentialORCIDs)
+                    //     eliminatingORCIDs.addAll(potentialORCIDs)
+                    // authorsList.add(currentAuthor) //lookup or create author
                 }
 
                 if (!eliminatingORCIDs.isEmpty())

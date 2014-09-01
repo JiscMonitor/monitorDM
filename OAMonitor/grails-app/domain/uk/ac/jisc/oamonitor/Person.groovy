@@ -3,119 +3,77 @@ package uk.ac.jisc.oamonitor
 import groovy.util.logging.Log4j
 
 @Log4j
-class Person {
+class Person extends KBComponent {
 
-    String fullname
+  String fullname
 
-    static hasMany = [
-        orcids:Identifier,
-        pisin:Identifier,
-        eisin:Identifier,
-        articles: Article
-    ]
+  static hasMany = [
+    articles: Article
+  ]
 
-    static constraints = {
-        fullname    (nullable:true, blank:false, maxSize:2048)
-        orcids      (unique: true, nullable: true)
-        pisin       (unique: true, nullable: true)
-        eisin       (unique: true, nullable: true)
+  static constraints = {
+    fullname    (nullable:true, blank:false, maxSize:2048)
+  }
+
+  static mapping = {
+  }
+
+  def lookupOrCreate(name, candidate_identifiers) {
+
+    def result = lookupByIdentifier(candidate_identifiers)
+
+    if ( result == null ) {
+      result = new Person(fullname: name).save()
+      candidate_identifiers.each { ci ->
+        def id = Identifier.lookupOrCreateCanonicalIdentifier(ci.namespace, ci.value)
+        result.ids.add(id)
+      }
+      result.save()
     }
 
-    /**
-     * One author at a time, check as there could be multiple orcids or none, check the articles and link
-     * @param authorName
-     * @param identifiers i.e. ORCIDs, EISIN, PISIN
-     * @return Person created or found plus any possible ORCIDs that are not matched
-     */
-    static def createOrLookupAuthor(String authorName, Map identifiers)
-    {
-        Person person;
-        AuthorName author
-        def possibleORCIDs
+    result
+  }
 
-        if (!AuthorName.findByFullname(authorName)) //Person won't exist without having a name existing
-        {
-            author = new AuthorName(fullname: authorName)
-            person = new Person(fullname: authorName)
-            author.addToAuthorMatches(person)
+  /**
+   *  @params candidate_identifiers - A list of maps containing 2 entries: namespace and value = [ {namespace:'orcid',value:'xxx'},{namespace:'email',value:'y'} ]
+   */
+  def lookupByIdentifier(candidate_identifiers) {
 
-            if (!author.save())
-            {
-                author.errors.each {
-                    log.debug(it)
-                }
-            }
+    log.debug("lookupByIdentifier(${candidate_identifiers})");
 
-            identifiers.each {key, value ->
-                switch (key.toLowerCase()) {
-                    case "eissn":
-                        println("EISSN\t"+"Key :"+key+"\tvalue :"+value)
-                        person.addToEisin(Identifier.lookupOrCreateCanonicalIdentifier(key,value)) //todo ask ian if this is the correct method to use?
-                        break
-                    case "pissn":
-                        println("PISSN\t"+"Key :"+key+"\tvalue :"+value)
-                        person.addToPisin(Identifier.lookupOrCreateCanonicalIdentifier(key,value))
-                        break
-                    case "orcid":
-                        println("ORCID\t"+"Key :"+key+"\tvalue :"+value)
-                        person.addToOrcids(Identifier.lookupOrCreateCanonicalIdentifier(key,value))
-                        break
-                    default:
-                        println("Unknown key type of identifier:\t Key :"+key+"\tValue :"+value)
-                        break
-                }
-            }
-            person.save(failOnError: true)
+    def result = null
+
+    if ( candidate_identifiers.length > 0 ) {
+      int ctr = 0
+      // Work through candidate_identifiers and see if any match current people
+      def base_query = "select p from Person as p join p.ids as ids where "
+      def params = []
+
+      candidate_identifiers.each { candidate_id ->
+        if ( ( id != null ) && ( id.namespace != null ) && ( id.value != null ) ) {
+          if ( ctr > 0 ) {
+            base_query += ' OR'
+          }
+          base_query += " ( ids.value = ? AND ids.namespace.value = ? )"
+          params.add(candidate_id.value, candidate_id.namespace)
+          ctr++
         }
-        else //does exist
-        {
-            if (identifiers) //rely on ID's first then by name
-            {
-                identifiers.each {key, value ->
-                    switch (key.toLowerCase()) {
-                        case "eissn":
-                            person = Person.findByEisin(value)
-                            if (person.fullname.equalsIgnoreCase(authorName)) //ensure identifier is for the author we're searching for
-                                return true //exit closure
-                            break
-                        case "pissn":
-                            person = Person.findByPisin(value)
-                            if (person.fullname.equalsIgnoreCase(authorName))
-                                return true
-                            break
-                        case "orcid":
-                            person = Person.findByOrcids(value)
-                            if (person.fullname.equalsIgnoreCase(authorName))
-                                return true
-                            else if (!person) {
-                                possibleORCIDs.add(value) //no one owns this orcid, is a potential for this author or any of the others being processed to be thiers
-                            }
-                            break
-                        default:
-                            log.debug("Could find a user from supplied Identifiers\t"+identifiers)
-                    }
-                }
-            } else
-            {
-                author = AuthorName.findByFullname(authorName)
-                if (author.authorMatches > 1) //could have a problem here, multiple authors, neither of which have unique identifiers
-                {
-                    //todo ask Ian about this issue
-                    //some kind of logic to make an educated guess ?!?!?!
-                    //check each person to see if theyve contributed to a certain journal //would need to pass inall the authors from the article
-                    //check to see if they've worked with certain authors to make better decision
-                }
-                else {
-                    person = Person.findByFullname(authorName)
-                    if (!person)
-                    {
-                        throw new RuntimeException("Unable to locate Author, which should exist"+authorName)
-                        log.debug("Unable to locate Author, which should exist"+authorName)
-                    }
-                }
-            }
-        }
-        return [person, possibleORCIDs]
+      }
+
+      def qry_result = Person.executeQuery(base_query, params)
+      if ( qry_result.size == 0 ) {
+        log.debug("No matches");
+      }
+      else if ( qry_result.size == 1 ) {
+        log.debug("Good match");
+         result = qry_result[0]
+      }
+      else {
+        def matched_person_objects = result.collect {it.id}
+        throw new Exception("Set of identifiers ${candidate_identifiers} matches multiple People ${matched_person_objects}");
+      }
     }
 
+    result
+  }
 }
