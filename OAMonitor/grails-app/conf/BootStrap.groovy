@@ -1,5 +1,10 @@
 import uk.ac.jisc.oamonitor.*
 
+import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
+import org.codehaus.groovy.grails.commons.GrailsApplication
+import uk.ac.jisc.oamonitor.DomainClassExtender
+
+
 class BootStrap {
 
   def grailsApplication
@@ -58,8 +63,24 @@ class BootStrap {
         }
       }
     }
+
+    // Add our custom metaclass methods for all KBComponents.
+    alterDefaultMetaclass();
+
   }
 
   def destroy = {
   }
+
+  def alterDefaultMetaclass = {
+
+    // Inject helpers to Domain classes.
+    grailsApplication.domainClasses.each {DefaultGrailsDomainClass domainClass ->
+
+      // Extend the domain class.
+      DomainClassExtender.extend (domainClass)
+
+    }
+  }
+
 }

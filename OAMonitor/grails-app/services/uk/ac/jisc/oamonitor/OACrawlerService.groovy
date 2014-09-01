@@ -110,6 +110,9 @@ class OACrawlerService {
 
         TitleInstance journal
 
+        log.debug("bibjson identifiers: ${record._source.bibjson.identifier}");
+        log.debug("identifiers: ${identifiers}");
+
         switch (type.toLowerCase())
         {
             case "journal":
@@ -117,15 +120,17 @@ class OACrawlerService {
                 break
 
             case "article":
-                println("**Jornal** \t"+journalTitle + "\tpub name\t"+publisherName + "\tIndentifiers\t"+identifiers)
+                println("**Jornal** \t"+journalTitle + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers)
+
                 if ( journalTitle ) {
                   // Don't use DOIs to lookup the journal (Might use a truncated form later)
                   def journal_identifiers = []
-                  ['issn','eissn','pissn'].each { tp ->
-                    if ( record._source.bibjson.identifier[tp] != null ) {
-                      journal_identifiers.add('namespace':tp,'value':record._source.bibjson.identifier[tp])
+                  record._source.bibjson.identifier.each {
+                    if ( ['issn','eissn','pissn'].contains( it.type ) ) {
+                      journal_identifiers.add(['namespace':it.type,'value':it.id])
                     }
                   }
+
                   if ( journal_identifiers.size() > 0 ) {
                     journal = titleLookupService.lookup(journalTitle,publisherName,journal_identifiers,null) 
                   }

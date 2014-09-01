@@ -35,6 +35,9 @@ class TitleLookupService {
         // id_def is map with keys 'type' and 'value'
         Identifier the_id = Identifier.lookupOrCreateCanonicalIdentifier(id_def.namespace, id_def.value)
 
+        log.debug("Processing ${id_def.namespace}, ${id_def.value}, ${the_id} ");
+        the_id.refresh()
+
         // Add the id.
         result['ids'] << the_id
 
@@ -46,7 +49,6 @@ class TitleLookupService {
           result['class_one'] = true
 
           // If we find an ID then lookup the components.
-          the_id.reload()
           the_id.identifiedComponents.each { KBComponent c ->
 
             // Ensure we're not looking at a Hibernate Proxy class representation of the class
