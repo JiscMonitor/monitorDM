@@ -6,8 +6,10 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery
-//= require_tree .
-//= require_self
+//= require bootstrap
+//= require bootstrap-editable.min
+//= require bootstrap-datetimepicker.min
+
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
