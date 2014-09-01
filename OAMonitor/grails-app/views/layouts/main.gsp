@@ -42,6 +42,8 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">System Admin</a>
                   <ul class="dropdown-menu">
                     <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
+                    <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
+                    <li><g:link controller="admin" action="forceEnrichment">Force Enrichment</g:link></li>
                   </ul>
                 </li>
               </sec:ifAnyGranted>
