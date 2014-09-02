@@ -7,6 +7,9 @@ class UrlMappings {
             }
         }
 
+        "/institution" ( controller:'institution', action:'index' )
+        "/institution/$id" ( controller:'institution', action:'show' )
+
         "/"(controller:'welcome', action:'index');
 
         "500"(view:'/error')

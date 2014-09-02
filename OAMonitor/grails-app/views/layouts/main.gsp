@@ -46,14 +46,19 @@
                 </li>
               </sec:ifAnyGranted>
 
-              <li><a href="#about">About</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Institutions<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><g:link controller="institution" action="index">Search</g:link></li>
+                </ul>
+              </li>
               <li><a href="#contact">Contact</a></li>
             </sec:ifLoggedIn>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <sec:ifLoggedIn>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user?.username}<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${applicationContext.springSecurityService.currentUser?.display}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><g:link controller="api">Api</g:link></li>
                   <li><g:link controller="profile">Profile</g:link></li>

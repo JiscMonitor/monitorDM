@@ -168,3 +168,5 @@ grails.plugin.springsecurity.providerNames = ['preAuthenticatedAuthenticationPro
                                               'rememberMeAuthenticationProvider' ]
 
 
+
+grails.plugins.twitterbootstrap.fixtaglib=true

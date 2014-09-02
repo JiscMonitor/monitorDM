@@ -14,7 +14,7 @@ class AdminController {
   def index() { 
   }
 
-  @Secured(['ROLE_USER', 'IS_AUTHENTICATED_FULLY'])
+  @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
   def triggerHarvest() {
     log.debug("triggerHarvest()");
     def future = executorService.submit({

@@ -9,9 +9,9 @@ Pattern p = Pattern.compile("(\\b[A-Z0-9._%+-]+)@([A-Z0-9.-]+\\.[A-Z]{2,4}\\b)",
 Matcher matcher = p.matcher(input);
 while(matcher.find()) {
   emails.add(matcher.group());
-  println(matcher.group())
-  println(matcher.group(1))
-  println(matcher.group(2))
+  println("email: ${matcher.group()}")
+  println("user: ${matcher.group(1)}")
+  println("domain: ${matcher.group(2)}")
 }
 
 

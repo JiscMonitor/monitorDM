@@ -14,11 +14,20 @@ class AuthorName {
     /* Any matched person */
     Person matchedPerson
 
-    /* todo : add Boolean isCorrespondingAuthor - to identify primary author */
+    /* Attached to what org */
+    DomainName domainName
+
+    /* Attached to what org */
+    Org institution
+
+    /* Author, Research Assistant, Corresponding Author, etc, etc */
+    RefdataValue role
 
     static constraints = {
         fullname unique: false, nullable: false, blank: false
         matchedPerson nullable: true
-        /* todo isCorrespondingAuthor mapping */
+        institution nullable: true
+        domainName nullable: true
+        role nullable: true
     }
 }

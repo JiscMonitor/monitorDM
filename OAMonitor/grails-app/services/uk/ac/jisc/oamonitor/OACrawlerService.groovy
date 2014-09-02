@@ -14,6 +14,7 @@ import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatter
 import org.joda.time.format.ISODateTimeFormat
 import java.text.SimpleDateFormat
+import java.util.regex.*
 
 
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html
@@ -192,7 +193,7 @@ class OACrawlerService {
                   journal = titleLookupService.lookup(journalTitle, publisherName, journal_identifiers,null) 
                 }
 
-                Article article = Article.findByIdentifierSet(article_identifiers)
+                Article article = Article.lookupByIdentifierSet(article_identifiers)
                 if ( article == null ) {
                   article = new Article(name: title)
                   if (!article.save()) {
@@ -210,10 +211,72 @@ class OACrawlerService {
 
                 authors.each {author ->
 
+                    Set<String> emails = new HashSet<String>();
+                    Set<String> domains = new HashSet<String>();
+                    def institutions = []
+
+                    // If there is an email address, then use the domain name as the "canonical" organisation
+                    if ( ( author.email != null ) && ( author.email.trim().length() > 0 ) ) {
+                      // Sometimes email address field is filled with other guff. Parse out all email addresses
+                      Pattern p = Pattern.compile("(\\b[A-Z0-9._%+-]+)@([A-Z0-9.-]+\\.[A-Z]{2,4}\\b)", Pattern.CASE_INSENSITIVE);
+                      Matcher matcher = p.matcher(author.email);
+                      while(matcher.find()) {
+                        emails.add(matcher.group());
+                        if ( ! domains.contains(matcher.group(2)) ) {
+                          domains.add(matcher.group(2))
+                        }
+                      }
+                    }
+
+
+                    def domain_record = null
+                    // ToDo: Add a filter list of educational domain name suffixes - .edu, .ac.uk, etc.
+                    // Make sure we have org records for all the email domains
+
+                    domains.each { 
+                      // lookup a domain name
+                      def domain_name = DomainName.findByFqdn(it) ?: new DomainName(fqdn:it).save(flush:true);
+
+                      // if the domain name has an institutuion attached, add that institution
+                      if ( domain_name.institution != null )
+                        institutions.add(institution)
+
+                      if (  domain_record == null ) {
+                        domain_record = domain_name
+                      }
+                    }
+
+                    // Process specified affiliation
+                    def institution = null
+
+                    if ( ( author.affiliation != null) && ( author.affiliation.trim().length() > 0 ) ) {
+                      def norm_inst_name = GOKbTextUtils.normaliseString(author.affiliation)
+                      institution = Org.findByNormname(norm_inst_name)
+                      if ( institution == null ) {
+                        institution = new Org(name:author.affiliation)
+                        if ( institutions.size() > 0 ) {
+                          institution.parent = institutions[0]
+                        }
+                        institution.save(flush:true)
+                      }
+                    }
+                    else if ( institutions.size() > 0 ) { // No explict affiliation - have we figured out a default?
+                      institution = institutions[0]
+                    }
+                    else {
+                      log.debug("Unable to make intelligent guess about institution");
+                    }
+
                     // See if we can identify a person based on identifiers
                     // II: The only instance of an orcid we have is in a record where it's embedded in the email as in
                     //     email: "ORCID: 0000-0001-5907-2795 stet@ukr.net" - We probably need to parse this somehow
-                    def person = Person.lookupByIdentifierSet([ [namespace:'email',value:author.email], [namespace:'orcid',value:author.orcid] ])
+                    def person_identifiers = []
+                    emails.each {
+                      person_identifiers.add([namespace:'email',value:it]);
+                    }
+                    person_identifiers.add([namespace:'orcid',value:author.orcid]);
+
+                    def person = Person.lookupByIdentifierSet(person_identifiers)
 
                     if ( ( person == null ) && 
                          ( ( author.email != null ) || ( author.orcid != null ) ) ) {
@@ -221,57 +284,27 @@ class OACrawlerService {
                       person = new Person(name:author.name).save(flush:true);
 
                       if ( ( author.email != null ) && ( author.email.trim().length() > 0 ) )  {
-                        def email_id = lookupOrCreateCanonicalIdentifier('email',author.email);
+                        def email_id = Identifier.lookupOrCreateCanonicalIdentifier('email',author.email);
                         person.ids.add(email_id);
                         person.save()
                       }
 
                       if ( ( author.orcid != null ) && ( author.orcid.trim().length() > 0 ) )  {
-                        def orcid_id = lookupOrCreateCanonicalIdentifier('orcid',author.orcid);
+                        def orcid_id = Identifier.lookupOrCreateCanonicalIdentifier('orcid',author.orcid);
                         person.ids.add(orcid_id);
                         person.save()
                       }
                     }
 
+                    log.debug("article name :: inst:${institution} art:${article} pers:${person} auth:${author.name}");
                     def article_name = new AuthorName(
+                                                      institution: institution,
                                                       theArticle:article,
                                                       matchedPerson:person, 
+                                                      domainName:domain_record,
                                                       fullname:author.name).save()
-                    // def (currentAuthor, potentialORCIDs) = Person.createOrLookupAuthor(author.name, identifier)
-                    // log.debug(article)
-                    // log.debug("Current Author\t"+currentAuthor+"\tPotential ORCIDs :"+potentialORCIDs)
-
-                    // if (!potentialORCIDs)
-                    //     eliminatingORCIDs.addAll(potentialORCIDs)
-                    // authorsList.add(currentAuthor) //lookup or create author
                 }
 
-                if (!eliminatingORCIDs.isEmpty())
-                {
-                    Set<Person> removeSet = new TreeSet<Person>()
-                    eliminatingORCIDs.each { id->
-                        Person authorToRemove = Person.findByOrcids(new Identifier(namespace: "orcid", value: id))
-                        if (!authorToRemove)
-                        {
-                            removeSet.add(authorToRemove)
-                            eliminatingORCIDs.remove(id)
-                        }
-                    }
-                    if (!removeSet.isEmpty())
-                    {
-                        authorsList.removeAll(removeSet)
-                        if (authorsList.size()==1 && eliminatingORCIDs.size()==1) // we can assume this person should have the remaining orcid
-                            authorsList.first().addToOrcids(new Identifier(namespace: "orcid", value: eliminatingORCIDs.first()))
-                        else if (authorsList>1 && eliminatingORCIDs.size()==1)
-                        {
-                            //to think about
-                        }
-                        else if (authorsList>1 && eliminatingORCIDs.size()>1)
-                        {
-                            //to think about
-                        }
-                    }
-                }
                 article.save(failOnError: true, flush:true)
                 break
 
