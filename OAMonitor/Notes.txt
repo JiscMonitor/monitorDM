@@ -1,0 +1,9 @@
+
+
+http://europepmc.org/oai.cgi?verb=listRecords&metadataPrefix=pmc_fm
+http://europepmc.org/oai.cgi?verb=listRecords&metadataPrefix=pmc
+http://staging.doaj.cottagelabs.com/query/journal,article/_search?q=MORPHOLOGY%20OF%20THE%20VIRUS%20OF%20AVIAN%20ERYTHRO-MYELOBLASTIC%20LEUCOSIS%20AND%20A%20COMPARISON%20WITH%20THE%20AGENT%20OF%20NEWCASTLE%20DISEASE
+http://europepmc.org/oai.cgi?Verb=ListSets
+http://europepmc.org/OaiService
+http://europepmc.org/oai.cgi?verb=listRecords&metadataPrefix=pmc_fm
+

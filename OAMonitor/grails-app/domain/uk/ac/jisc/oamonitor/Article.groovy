@@ -2,17 +2,13 @@ package uk.ac.jisc.oamonitor
 
 class Article extends KBComponent {
 
-    String title
-
-    static belongsTo = [Person] //todo discuss with ian
+    // USE KBComponent name property
+    // String title
 
     static hasMany = [
-            authors:Person,
-            appearences:Appearence
     ]
 
     static mappedBy = [
-      appearences:'article'
     ]
 
     //static hasOne = [leadAuthor:Person] //no way to tell from data
@@ -30,7 +26,6 @@ class Article extends KBComponent {
     }
 
     static constraints = {
-        title nullable: false, blank: false
         //leadAuthor nullable: true, blank: true //todo talk to Ian if we're to assume an author is or if this is needed at all
     }
 

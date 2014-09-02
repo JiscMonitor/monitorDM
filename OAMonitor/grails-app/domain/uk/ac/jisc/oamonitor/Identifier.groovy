@@ -39,9 +39,15 @@ class Identifier extends KBComponent {
   }
 
   static def lookupOrCreateCanonicalIdentifier(ns, value) {
-    def namespace = IdentifierNamespace.findByValue(ns) ?: new IdentifierNamespace(value:ns).save(failOnError:true);
-    def identifier = Identifier.findByNamespaceAndValue(namespace,value) ?: new Identifier(namespace:namespace, value:value).save(failOnError:true, flush:true)
-    log.debug("lookupOrCreateCanonicalIdentifier(${ns},${value}) returning ${identifier}");
+    def identifier = null;
+    if ( ( ns != null ) && ( value != null ) ) {
+      def namespace = IdentifierNamespace.findByValue(ns) ?: new IdentifierNamespace(value:ns).save(failOnError:true);
+      identifier = Identifier.findByNamespaceAndValue(namespace,value) ?: new Identifier(namespace:namespace, value:value).save(failOnError:true, flush:true)
+      // log.debug("lookupOrCreateCanonicalIdentifier(${ns},${value}) returning ${identifier?:'NULL IDENTIFIER - SHOULD NOT BE HERE'}");
+    }
+    else {
+      throw new Exception("Cannot call lookupOrCreate for null namespace or value (${ns}:${value})");
+    }
     identifier
   }
 

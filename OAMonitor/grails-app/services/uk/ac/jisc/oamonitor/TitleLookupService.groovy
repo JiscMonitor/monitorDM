@@ -14,7 +14,7 @@ class TitleLookupService {
 
   private Map classOneMatch (def ids) {
 
-    log.debug("classOneMatch(${ids})");
+    // log.debug("classOneMatch(${ids})");
 
     // Get the class 1 identifier namespaces.
     Set<String> class_one_ids = grailsApplication.config.identifiers.class_ones
@@ -35,7 +35,7 @@ class TitleLookupService {
         // id_def is map with keys 'type' and 'value'
         Identifier the_id = Identifier.lookupOrCreateCanonicalIdentifier(id_def.namespace, id_def.value)
 
-        log.debug("Processing ${id_def.namespace}, ${id_def.value}, ${the_id} ");
+        // log.debug("Processing ${id_def.namespace}, ${id_def.value}, ${the_id} ");
         the_id.refresh()
 
         // Add the id.
@@ -85,11 +85,11 @@ class TitleLookupService {
     switch (matches.size()) {
       case 0 :
         // No match behaviour.
-        log.debug ("Title class one identifier lookup yielded no matches.")
+        // log.debug ("Title class one identifier lookup yielded no matches.")
 
         // Check for presence of class one ID
         if (results['class_one']) {
-          log.debug ("One or more class 1 IDs supplied so must be a new TI.")
+          // log.debug ("One or more class 1 IDs supplied so must be a new TI.")
 
           // Create the new TI.
           the_title = new TitleInstance(name:title)
@@ -97,13 +97,13 @@ class TitleLookupService {
         } else {
 
           // No class 1s supplied we should try and find a match on the title string.
-          log.debug ("No class 1 ids supplied.")
+          // log.debug ("No class 1 ids supplied.")
 
           // Lookup using title string match only.
           the_title = attemptStringMatch (norm_title)
 
           if (the_title) {
-            log.debug("TI ${the_title} matched by name. Partial match")
+            // log.debug("TI ${the_title} matched by name. Partial match")
 
             // Add the variant.
             the_title.addVariantTitle(title)
@@ -118,30 +118,24 @@ class TitleLookupService {
 
           } else {
 
-            log.debug("No TI could be matched by name. New TI, flag for review.")
+            // log.debug("No TI could be matched by name. New TI, flag for review.")
 
             // Could not match on title either.
             // Create a new TI but attach a Review request to it.
             the_title = new TitleInstance(name:title)
-            ReviewRequest.raise(
-                the_title,
-                "New TI created.",
-                "No 1st class ID supplied and no match could be made on title name.",
-                user
-                )
           }
         }
         break;
       case 1 :
       // Single component match.
-        log.debug ("Title class one identifier lookup yielded a single match.")
+        // log.debug ("Title class one identifier lookup yielded a single match.")
 
         the_title = singleTIMatch(title, norm_title, matches[0], user)
 
         break;
       default :
       // Multiple matches.
-        log.debug ("Title class one identifier lookup yielded ${matches.size()} matches. This is a bad match. Ingest should skip this row.")
+        // log.debug ("Title class one identifier lookup yielded ${matches.size()} matches. This is a bad match. Ingest should skip this row.")
         break;
     }
 
@@ -159,7 +153,7 @@ class TitleLookupService {
 
       // Try and save the result now.
       if ( the_title.save(failOnError:true, flush:true) ) {
-        log.debug("Succesfully saved TI: ${the_title.name}")
+        // log.debug("Succesfully saved TI: ${the_title.name}")
       }
       else {
         the_title.errors.each { e ->
@@ -174,32 +168,9 @@ class TitleLookupService {
   private TitleInstance addPublisher (String publisher_name, TitleInstance ti, user = null) {
 
     // Lookup our publisher.
-    Org publisher = componentLookupService.lookupComponent(publisher_name)
-
-    // Found a publisher.
-    if (publisher) {
-      def orgs = ti.getPublisher()
-
-      // Has the publisher ever existed in the list against this title.
-      if (!orgs.contains(publisher)) {
-
-        // Is a review needed.
-        boolean review = (orgs.size() > 0) && ti.changePublisher (
-            componentLookupService.lookupComponent(publisher_name),
-            true
-            )
-
-        // Raise a review request.
-        if (review) {
-          ReviewRequest.raise(
-              ti,
-              "Added '${publisher.name}' as a publisher on '${ti.name}'.",
-              "Publisher supplied in ingested file is different to any already present on TI.",
-              user
-              )
-        }
-      }
-    }
+    Org publisher = Org.findByName(publisher_name) ?: new Org(name:publisher_name).save();
+    ti.changePublisher(publisher)
+    
 
     ti
   }
@@ -249,18 +220,18 @@ class TitleLookupService {
       case 1 :
 
       // Do nothing just continue using the TI.
-        log.debug("Exact distance match for TI.")
+        // log.debug("Exact distance match for TI.")
         break
 
       case ( ti.variantNames.collect{GOKbTextUtils.cosineSimilarity(it.normVariantName, norm_title)>= threshold }.size() > 0 ) :
         // Good match on existing variant titles
-        log.debug("Good match for TI on variant.")
+        // log.debug("Good match for TI on variant.")
         break
 
       case {it >= threshold} :
 
       // Good match. Need to add as alternate name.
-        log.debug("Good distance match for TI. Add as variant.")
+        // log.debug("Good distance match for TI. Add as variant.")
         ti.addVariantTitle(title)
         break
 

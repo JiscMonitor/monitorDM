@@ -10,10 +10,13 @@ grails.config.locations = [ "file:${userHome}/.grails/${appName}-config.groovy"]
 
 identifiers.class_ones = [
   "issn",
+  "pissn",
   "eissn",
   "doi",
   "isbn"
 ] as Set
+
+cosine.good_threshold = 0.75
 
 
 // if (System.properties["${appName}.config.location"]) {
@@ -125,16 +128,16 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 
    debug  'grails.app.controllers',
-           'grails.app.service',
-           'grails.app.services',
-           'grails.app.domain',
-           'grails.app.tagLib',
-           // 'grails.app.filters',
-           'grails.app.conf',
-           'grails.app.jobs',
-           'grails.app.bootstrap',
-           'grails.app.startup',
-           'com.k_int'
+          'grails.app.service',
+          'grails.app.services',
+          'grails.app.domain',
+          'grails.app.tagLib',
+          'grails.app.conf',
+          'grails.app.jobs',
+          'grails.app.bootstrap',
+          'grails.app.startup',
+          'com.k_int',
+          'uk.ac.jisc.oamonitor'
 
 
 }

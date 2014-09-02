@@ -13,14 +13,12 @@ import org.joda.time.DateTimeZone
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatter
 import org.joda.time.format.ISODateTimeFormat
-
 import java.text.SimpleDateFormat
 
 
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html
 
 @Transactional 
-@Log4j
 class OACrawlerService {
 
     def titleLookupService
@@ -28,6 +26,7 @@ class OACrawlerService {
     def harvestDOAJ() {
       log.debug("harvestDOAJ()");
       getRecordsSince('http://staging.doaj.cottagelabs.com/query/journal,article/_search', null, doaj_processing_closure, false)
+      log.debug("harvestDOAJ() exiting");
     }
 
     /**
@@ -42,6 +41,7 @@ class OACrawlerService {
     def getRecordsSince(es_endpoint, from_timestamp, closure, debug) {
         log.debug("getRecordsSince(${es_endpoint},${from_timestamp},closure,${debug})");
         def http
+        // def sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
         if (es_endpoint) {
             try {
                 http = new HTTPBuilder(es_endpoint)
@@ -53,51 +53,104 @@ class OACrawlerService {
         else
             throw new RuntimeException("Elasticsearch URL not passed "+es_endpoint)
 
-
-
-        def latestDate = Crawler.withCriteria {
+        def highestTimestampSeen = Crawler.withCriteria {
             projections {
                 max 'latestCrawled' //most recently crawled time date
             }
         }
-        latestDate = latestDate.first()
+        highestTimestampSeen = highestTimestampSeen.first()
+        def highestIdSeen = null
 
-        log.debug("Collecting since ${latestDate}");
+        log.debug("Collecting since ${highestTimestampSeen}");
 
         if(!debug) {
+
+
+          def query = null
+          if ( highestTimestampSeen == null ) {
+            query="*"
+          }
+          else {
+            query="last_updated:[\"${highestTimestampSeen.toString()}\" TO *]"
+          }
+
+          def processed = 1;
+          def from = 0;
+          def sz = 50;
+
+          while( processed > 0 ) {
+            log.debug("Enter DOAJ batch processing section");
+            processed = 0;
+
+            // http://staging.doaj.cottagelabs.com/query/journal,article/_search?q=last_updated:[%222014-08-07T21:30:39Z%22%20TO%20*]
+
+            log.debug("Query for q:${query} from:${from} sz:${sz}");
+            log.debug("http request.....");
+
             http.request(Method.GET,ContentType.JSON) { req->
-                response.success = { resp, json ->
-                    println 'request OK'
-                    assert resp.statusLine.statusCode == 200
+              // uri.path = 
+              uri.query = [
+                 q:query,
+                 sort:'last_updated',
+                 sort:'_id',
+                 from:from,
+                 size:sz
+              ]
 
-                    json.hits.hits.each { record ->
-                        DateTime presentDate = new DateTime(record._source.last_updated, DateTimeZone.UTC)
-                        if(latestDate==null)
-                            latestDate = presentDate
-                        else if (latestDate < presentDate)
-                            latestDate = presentDate  //keep a track of latest date found
+              from += sz
 
-                        closure(record)
-                    }
+              response.success = { resp, json ->
+                log.debug("request OK ${json}")
+                assert resp.statusLine.statusCode == 200
+
+                json.hits?.hits?.each { record ->
+
+                  log.debug("Processing record");
+
+                  DateTime currentRecordTimestamp = new DateTime(record._source.last_updated, DateTimeZone.UTC)
+
+                  if((highestTimestampSeen==null)||(highestTimestampSeen<currentRecordTimestamp)) {
+                    highestTimestampSeen = currentRecordTimestamp
+                    log.debug("update highest timestamp to ${highestTimestampSeen}");
+                  }
+
+                  if ((highestIdSeen==null)||(highestIdSeen<record._id)) {
+                    highestIdSeen = record._id
+                    log.debug("update highest record_id to ${highestIdSeen}");
+                  }
+
+                  KBComponent.withNewTransaction { status ->
+                    closure(record)
+                    processed++
+                    log.debug("closure completed (processed count: ${processed}");
+                  }
                 }
+              }
 
-                response.failure = { resp ->
-                    println 'request failed'
-                    assert resp.status >= 400
-                }
+              response.failure = { resp ->
+                log.error('request failed')
+                assert resp.status >= 400
+              }
             }
+
+            log.debug("Procesed ${processed} records.. nonzero == get next batch");
+          }
         }
         else {
-            //Test env code to pass JSON example Elasticsearch files
-            def json = new JsonSlurper().parseText(es_endpoint)
-            json.hits.hits.each { record ->
-                closure(record)
-            }
+          //Test env code to pass JSON example Elasticsearch files
+          def json = new JsonSlurper().parseText(es_endpoint)
+          json.hits.hits.each { record ->
+            closure(record)
+          }
         }
+
+      log.debug("getRecordsSince exiting");
     }
 
     //closure passed into record processing to create a record should it not exist already, record using gpath/slurped JSON
     def doaj_processing_closure = { record ->
+
+        // N.B. For ARTICLES - this is the title of the article, for JOURNALS this is the title of the journal
         String title         = record._source.bibjson.title
         ArrayList authors    = record._source.bibjson.author
         String journalTitle  = record._source.bibjson.journal?.title
@@ -113,14 +166,14 @@ class OACrawlerService {
         log.debug("bibjson identifiers: ${record._source.bibjson.identifier}");
         log.debug("identifiers: ${identifiers}");
 
-        switch (type.toLowerCase())
-        {
+        switch (type.toLowerCase()) {
             case "journal":
-                titleLookupService.lookup(journalTitle,publisherName,identifiers,null) //Look for journals that article appear in and link
+                log.debug("**JOURNAL** \t"+title + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers)
+                titleLookupService.lookup(title,publisherName,identifiers,null) //Look for journals that article appear in and link
                 break
 
             case "article":
-                println("**Jornal** \t"+journalTitle + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers)
+                log.debug("**ARTICLE** \t"+title + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers)
 
                 if ( journalTitle ) {
                   // Don't use DOIs to lookup the journal (Might use a truncated form later)
@@ -136,7 +189,7 @@ class OACrawlerService {
                   }
                 }
 
-                Article article = new Article(title: title, continuingSeries: null, provenance: null, reference:null)
+                Article article = new Article(name: title)
                 if (!article.save()) {
                     article.errors.each {
                         log.error(it)
@@ -154,10 +207,7 @@ class OACrawlerService {
                     // See if we can identify a person based on identifiers
                     // II: The only instance of an orcid we have is in a record where it's embedded in the email as in
                     //     email: "ORCID: 0000-0001-5907-2795 stet@ukr.net" - We probably need to parse this somehow
-                    def person = Person.lookupByIdentifierSet([
-                                                             [namespace:'email',value:author.email],
-                                                             [namespace:'orcid',value:author.orcid]
-                                                           ])
+                    def person = Person.lookupByIdentifierSet([ [namespace:'email',value:author.email], [namespace:'orcid',value:author.orcid] ])
 
                     def article_name = new AuthorName(
                                                       theArticle:article,
@@ -198,7 +248,7 @@ class OACrawlerService {
                         }
                     }
                 }
-                article.save(failOnError: true)
+                article.save(failOnError: true, flush:true)
                 break
 
             default:
