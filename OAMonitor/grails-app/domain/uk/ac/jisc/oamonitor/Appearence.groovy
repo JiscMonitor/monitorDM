@@ -9,19 +9,23 @@ class Appearence implements Serializable {
 
     Article article;
     TitleInstance titleInstance
+    Date dateDetected = new Date()
 
     static constraints = {
-        //don't want to add an appearence mutliple times, once only!
-        titleInstance validator: { TitleInstance ti, Appearence a ->
-            if (a.article == null) return
-            boolean existing = false
-            Appearence.withNewSession {
+      //don't want to add an appearence mutliple times, once only!
+      titleInstance validator: { TitleInstance ti, Appearence a ->
+        if (a.article == null) return
+
+        boolean existing = false
+        Appearence.withNewSession {
                 existing = Appearence.exists(a.article.id, ti.id)
-            }
-            if (existing) {
-                return 'Appearence.exists'
-            }
         }
+        if (existing) {
+          return 'Appearence.exists'
+        }
+      }
+
+      dateDetected nullable:true
     }
 
     static mapping = {

@@ -34,6 +34,27 @@ class InstitutionController {
   def show() { 
     def result=[:]
     result.org = Org.get(params.id)
+    result.domains = DomainName.findAllByInstitution(result.org)
+    result.works = AuthorName.executeQuery("select a from AuthorName as a where a.institution = ? or a.domainName.institution = ?",[result.org,result.org])
+    result
+  }
+
+  @Secured(['ROLE_USER', 'IS_AUTHENTICATED_FULLY'])
+  def claimFQDN() {
+    def result=[:]
+    result.org = Org.get(params.id)
+    
+    if ( params.dn != null ) {
+      def domainname = DomainName.get(params.dn);
+      if ( ( domainname ) && ( domainname.institution == null ) ) {
+        domainname.institution = result.org
+        domainname.save(flush:true)
+      }
+    }
+
+    result.org = Org.get(params.id)
+    result.hits = DomainName.executeQuery("select d from DomainName as d where d.fqdn like ?",["%${params.q}%"])
+    result.totalHits = DomainName.executeQuery("select count(d) from DomainName as d where d.fqdn like ?",["%${params.q}%"])[0]
     result
   }
 }
