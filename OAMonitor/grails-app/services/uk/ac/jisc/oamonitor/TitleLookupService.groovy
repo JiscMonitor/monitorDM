@@ -224,6 +224,7 @@ class TitleLookupService {
         break
 
       case ( ti.variantNames.collect{GOKbTextUtils.cosineSimilarity(it.normVariantName, norm_title)>= threshold }.size() > 0 ) :
+        log.debug("Existing variant title good match");
         // Good match on existing variant titles
         // log.debug("Good match for TI on variant.")
         break
@@ -237,15 +238,8 @@ class TitleLookupService {
 
       default :
         // Bad match...
+        log.debug("BAD MATCH:: ${title} -- ${ti.normname} / ${norm_title} == ${distance}");
         ti.addVariantTitle(title)
-
-        // Raise a review request
-        ReviewRequest.raise(
-            ti,
-            "'${title}' added as a variant of '${ti.name}'.",
-            "Match was made on 1st class identifier but title name seems to be very different.",
-            user
-            )
         break
     }
 

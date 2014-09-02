@@ -100,7 +100,7 @@ class OACrawlerService {
               from += sz
 
               response.success = { resp, json ->
-                log.debug("request OK ${json}")
+                log.debug("request OK");
                 assert resp.statusLine.statusCode == 200
 
                 json.hits?.hits?.each { record ->
@@ -173,27 +173,33 @@ class OACrawlerService {
                 break
 
             case "article":
-                log.debug("**ARTICLE** \t"+title + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers)
+                log.debug("**ARTICLE** \t"+title + "\tpub name\t"+publisherName + "\tIdentifiers\t"+identifiers+" in "+journalTitle)
 
-                if ( journalTitle ) {
-                  // Don't use DOIs to lookup the journal (Might use a truncated form later)
-                  def journal_identifiers = []
-                  record._source.bibjson.identifier.each {
-                    if ( ['issn','eissn','pissn'].contains( it.type ) ) {
-                      journal_identifiers.add(['namespace':it.type,'value':it.id])
-                    }
+                // Don't use DOIs to lookup the journal (Might use a truncated form later)
+                def article_identifiers = []
+                def journal_identifiers = []
+
+                record._source.bibjson.identifier.each {
+                  if ( ['issn','eissn','pissn'].contains( it.type ) ) {
+                    journal_identifiers.add(['namespace':it.type,'value':it.id])
                   }
-
-                  if ( journal_identifiers.size() > 0 ) {
-                    journal = titleLookupService.lookup(journalTitle,publisherName,journal_identifiers,null) 
+                  if ( ['doi'].contains( it.type ) ) {
+                    article_identifiers.add(['namespace':it.type,'value':it.id])
                   }
                 }
 
-                Article article = new Article(name: title)
-                if (!article.save()) {
-                    article.errors.each {
-                        log.error(it)
-                    }
+                if ( journal_identifiers.size() > 0 ) {
+                  journal = titleLookupService.lookup(journalTitle, publisherName, journal_identifiers,null) 
+                }
+
+                Article article = Article.findByIdentifierSet(article_identifiers)
+                if ( article == null ) {
+                  article = new Article(name: title)
+                  if (!article.save()) {
+                      article.errors.each {
+                          log.error(it)
+                      }
+                  }
                 }
 
                 if (journal && article)
@@ -208,6 +214,24 @@ class OACrawlerService {
                     // II: The only instance of an orcid we have is in a record where it's embedded in the email as in
                     //     email: "ORCID: 0000-0001-5907-2795 stet@ukr.net" - We probably need to parse this somehow
                     def person = Person.lookupByIdentifierSet([ [namespace:'email',value:author.email], [namespace:'orcid',value:author.orcid] ])
+
+                    if ( ( person == null ) && 
+                         ( ( author.email != null ) || ( author.orcid != null ) ) ) {
+                      //New person with legitimate identifier - create a person record
+                      person = new Person(name:author.name).save(flush:true);
+
+                      if ( ( author.email != null ) && ( author.email.trim().length() > 0 ) )  {
+                        def email_id = lookupOrCreateCanonicalIdentifier('email',author.email);
+                        person.ids.add(email_id);
+                        person.save()
+                      }
+
+                      if ( ( author.orcid != null ) && ( author.orcid.trim().length() > 0 ) )  {
+                        def orcid_id = lookupOrCreateCanonicalIdentifier('orcid',author.orcid);
+                        person.ids.add(orcid_id);
+                        person.save()
+                      }
+                    }
 
                     def article_name = new AuthorName(
                                                       theArticle:article,
