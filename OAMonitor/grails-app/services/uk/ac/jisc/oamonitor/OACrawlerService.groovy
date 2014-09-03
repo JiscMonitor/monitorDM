@@ -203,8 +203,15 @@ class OACrawlerService {
                   }
                 }
 
-                if (journal && article)
-                   Appearence.create(article, journal) //add to link table i.e. m:n
+                if (journal && article) {
+                   def appearence = new Appearence(
+                                                   article: article, 
+                                                   titleInstance: journal,
+                                                   volume:record._source.bibjson.journal?.volume,
+                                                   issue:record._source.bibjson.journal?.number
+                                                   )
+                   appearence.save(flush: true)
+                }
 
                 Set<Person> authorsList = new TreeSet<Person>() //returned or created person objects i.e. authors
                 Set eliminatingORCIDs   = new TreeSet() // Set of potential lists to be flattened to elimiate

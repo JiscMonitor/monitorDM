@@ -9,6 +9,9 @@ class Appearence implements Serializable {
 
     Article article;
     TitleInstance titleInstance
+    String volume
+    String issue
+
     Date dateDetected = new Date()
 
     static constraints = {
@@ -26,6 +29,8 @@ class Appearence implements Serializable {
       }
 
       dateDetected nullable:true
+      volume nullable:true
+      issue nullable:true
     }
 
     static mapping = {

@@ -53,7 +53,7 @@ class InstitutionController {
     }
 
     result.org = Org.get(params.id)
-    result.hits = DomainName.executeQuery("select d from DomainName as d where d.fqdn like ?",["%${params.q}%"])
+    result.hits = DomainName.executeQuery("select d from DomainName as d where d.fqdn like ?",["%${params.q?:''}%"])
     result.totalHits = DomainName.executeQuery("select count(d) from DomainName as d where d.fqdn like ?",["%${params.q}%"])[0]
     result
   }

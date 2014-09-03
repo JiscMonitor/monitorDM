@@ -31,8 +31,11 @@
                     <g:else>${w.fullname}</g:else>
                    )
                  <g:link controller="work" action="show" id="${w.theArticle.id}">${w.theArticle.name}</g:link> in <ul>
-                 <g:each in="${w.theArticle.titleInstances}" var="a">
-                   Detected in <g:link controller="collection" action="show" id="${a.id}">${a.name}</g:link> on ${a.dateDetected}
+                 <g:each in="${w.theArticle.appearances}" var="a">
+                   Detected in 
+                   <g:if test="${((a.volume != null) || (a.issue != null))}">volume ${a.volume?:'Unknown'} 
+                        <g:if test="${a.issue != null}">issue ${a.issue}</g:if> of </g:if>
+                   <g:link controller="collection" action="show" id="${a.id}">${a.titleInstance.name}</g:link> on ${a.dateDetected}
                  </g:each>
                  </ul>
                </td>
