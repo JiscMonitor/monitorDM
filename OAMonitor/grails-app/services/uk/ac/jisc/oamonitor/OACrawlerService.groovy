@@ -134,7 +134,7 @@ class OACrawlerService {
 
             log.debug("Procesed ${processed} records.. nonzero == get next batch");
             def elapsed = System.currentTimeMillis()-startTime
-            log.debug("*** Progress : ${totalRecordsSeen} / ${searchTotal} = ${totalRecordsSeen/totalRecordsSeen*100} elapsed:${elapsed} avg=${elasped/totalRecordsSeen} ***");
+            log.debug("*** Progress : ${totalRecordsSeen} / ${searchTotal} = ${totalRecordsSeen/totalRecordsSeen*100} elapsed:${elapsed} avg=${elapsed/totalRecordsSeen} ***");
           }
         }
         else {

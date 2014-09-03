@@ -776,7 +776,7 @@ abstract class KBComponent {
           
           
         } else {
-          log.debug("\t...value is null")
+          // log.debug("\t...value is null")
         }
         count ++
       }
@@ -827,7 +827,7 @@ abstract class KBComponent {
       base_query += " ) "
 
       if ( ctr > 0 ) {
-        log.debug("Run : ${base_query}, ${params}");
+        // log.debug("Run : ${base_query}, ${params}");
 
         def matched_components = KBComponent.executeQuery(base_query, params)
 
