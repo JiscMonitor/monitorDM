@@ -66,7 +66,6 @@ class OACrawlerService {
 
         if(!debug) {
 
-
           def query = null
           if ( highestTimestampSeen == null ) {
             query="*"
@@ -75,6 +74,9 @@ class OACrawlerService {
             query="last_updated:[\"${highestTimestampSeen.toString()}\" TO *]"
           }
 
+          def startTime = System.currentTimeMillis()
+          def searchTotal = 0;
+          def totalRecordsSeen = 0;
           def processed = 1;
           def from = 0;
           def sz = 50;
@@ -86,7 +88,6 @@ class OACrawlerService {
             // http://staging.doaj.cottagelabs.com/query/journal,article/_search?q=last_updated:[%222014-08-07T21:30:39Z%22%20TO%20*]
 
             log.debug("Query for q:${query} from:${from} sz:${sz}");
-            log.debug("http request.....");
 
             http.request(Method.GET,ContentType.JSON) { req->
               // uri.path = 
@@ -101,29 +102,26 @@ class OACrawlerService {
               from += sz
 
               response.success = { resp, json ->
-                log.debug("request OK");
                 assert resp.statusLine.statusCode == 200
 
-                json.hits?.hits?.each { record ->
+                searchTotal = json.hits?.total
 
-                  log.debug("Processing record");
+                json.hits?.hits?.each { record ->
 
                   DateTime currentRecordTimestamp = new DateTime(record._source.last_updated, DateTimeZone.UTC)
 
                   if((highestTimestampSeen==null)||(highestTimestampSeen<currentRecordTimestamp)) {
                     highestTimestampSeen = currentRecordTimestamp
-                    log.debug("update highest timestamp to ${highestTimestampSeen}");
                   }
 
                   if ((highestIdSeen==null)||(highestIdSeen<record._id)) {
                     highestIdSeen = record._id
-                    log.debug("update highest record_id to ${highestIdSeen}");
                   }
 
                   KBComponent.withNewTransaction { status ->
                     closure(record)
                     processed++
-                    log.debug("closure completed (processed count: ${processed}");
+                    totalRecordsSeen++
                   }
                 }
               }
@@ -135,6 +133,8 @@ class OACrawlerService {
             }
 
             log.debug("Procesed ${processed} records.. nonzero == get next batch");
+            def elapsed = System.currentTimeMillis()-startTime
+            log.debug("*** Progress : ${totalRecordsSeen} / ${searchTotal} = ${totalRecordsSeen/totalRecordsSeen*100} elapsed:${elapsed} avg=${elasped/totalRecordsSeen} ***");
           }
         }
         else {
@@ -164,8 +164,8 @@ class OACrawlerService {
 
         TitleInstance journal
 
-        log.debug("bibjson identifiers: ${record._source.bibjson.identifier}");
-        log.debug("identifiers: ${identifiers}");
+        // log.debug("bibjson identifiers: ${record._source.bibjson.identifier}");
+        // log.debug("identifiers: ${identifiers}");
 
         switch (type.toLowerCase()) {
             case "journal":
@@ -244,9 +244,10 @@ class OACrawlerService {
                       // lookup a domain name
                       def domain_name = DomainName.findByFqdn(it) ?: new DomainName(fqdn:it).save(flush:true);
 
-                      // if the domain name has an institutuion attached, add that institution
+                      // if the domain name has an institutuion attached, add that institution to the list
+                      // of candidates for this entry
                       if ( domain_name.institution != null )
-                        institutions.add(institution)
+                        institutions.add(domain_name.institution)
 
                       if (  domain_record == null ) {
                         domain_record = domain_name
@@ -271,7 +272,7 @@ class OACrawlerService {
                       institution = institutions[0]
                     }
                     else {
-                      log.debug("Unable to make intelligent guess about institution");
+                      // log.debug("Unable to make intelligent guess about institution");
                     }
 
                     // See if we can identify a person based on identifiers
@@ -303,7 +304,7 @@ class OACrawlerService {
                       }
                     }
 
-                    log.debug("article name :: inst:${institution} art:${article} pers:${person} auth:${author.name}");
+                    // log.debug("article name :: inst:${institution} art:${article} pers:${person} auth:${author.name}");
                     def article_name = new AuthorName(
                                                       institution: institution,
                                                       theArticle:article,
