@@ -32,10 +32,12 @@
                    )
                  <g:link controller="work" action="show" id="${w.theArticle.id}">${w.theArticle.name}</g:link> in <ul>
                  <g:each in="${w.theArticle.appearances}" var="a">
-                   Detected in 
+                   Published in 
                    <g:if test="${((a.volume != null) || (a.issue != null))}">volume ${a.volume?:'Unknown'} 
                         <g:if test="${a.issue != null}">issue ${a.issue}</g:if> of </g:if>
-                   <g:link controller="collection" action="show" id="${a.id}">${a.titleInstance.name}</g:link> on ${a.dateDetected}
+                   <g:link controller="collection" action="show" id="${a.id}">${a.titleInstance.name}</g:link> 
+                   on XX (Detected on <g:formatDate date="${a.dateDetected}" format="yyyy-MM-dd"/>)
+                   <span class="pull-right">--LicenseHere--</span>
                  </g:each>
                  </ul>
                </td>
