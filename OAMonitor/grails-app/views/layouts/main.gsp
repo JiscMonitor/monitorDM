@@ -47,9 +47,11 @@
               </sec:ifAnyGranted>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Institutions<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Monitor<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><g:link controller="institution" action="index">Search</g:link></li>
+                  <li><g:link controller="institution" action="index">Institution Search</g:link></li>
+                  <li><g:link controller="person" action="index">Person Search</g:link></li>
+                  <li><g:link controller="pubplace" action="index">Publication Place Search</g:link></li>
                 </ul>
               </li>
               <li><a href="#contact">Contact</a></li>
