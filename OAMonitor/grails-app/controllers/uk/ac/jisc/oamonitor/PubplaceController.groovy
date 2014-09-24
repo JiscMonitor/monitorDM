@@ -33,8 +33,13 @@ class PubplaceController {
   @Secured(['ROLE_USER', 'IS_AUTHENTICATED_FULLY'])
   def show() {
     def result=[:]
+    def ti_type = RefdataCategory.lookupOrCreate('Combo.Type','Appearence.TitleInstance')
     result.pubplace = TitleInstance.get(params.id)
-    result.works = Appearence.executeQuery("select a from Appearence as a where a.titleInstance = ?",[result.pubplace])
+    // result.works = Appearence.executeQuery("select a from Appearence as a where a.titleInstance = ?",[result.pubplace])
+     
+    result.appearances = Appearence.executeQuery("select c.fromComponent from Combo as c where c.fromComponent = :ti and c.type = :type",
+                                              [ti:result.pubplace, type:ti_type])
+
     result
   }
 }

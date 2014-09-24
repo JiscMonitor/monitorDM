@@ -16,6 +16,7 @@
      <div class="btn-group">
        <g:link controller="institution" action="claimFQDN" id="${params.id}" class="button btn btn-default">Claim FQDN</g:link>
        <g:link controller="institution" action="other" id="${params.id}" class="button btn btn-default">Action..</g:link>
+       <g:link controller="institution" action="APCDashboard" id="${params.id}" class="button btn btn-default">APC Dashboard</g:link>
      </div>
 
      <div>
@@ -31,6 +32,7 @@
                     <g:else>${w.fullname}</g:else>
                    )
                  <g:link controller="work" action="show" id="${w.theArticle.id}">${w.theArticle.name}</g:link> in <ul>
+                 apps ${w.theArticle.appearances}
                  <g:each in="${w.theArticle.appearances}" var="a">
                    Published in 
                    <g:if test="${((a.volume != null) || (a.issue != null))}">volume ${a.volume?:'Unknown'} 

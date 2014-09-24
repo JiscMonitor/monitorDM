@@ -26,7 +26,7 @@
            <tr><th>Works</th></tr>
          </thead>
          <tbody>
-           <g:each in="${works}" var="w">
+           <g:each in="${appearances}" var="w">
              <tr>
                <td>
                  <g:link controller="work" action="show" id="${w.article.id}">${w.article.name}</g:link> 

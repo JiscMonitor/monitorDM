@@ -11,20 +11,10 @@ class Article extends KBComponent {
     static mappedBy = [
     ]
 
-    //static hasOne = [leadAuthor:Person] //no way to tell from data
-
-    //Equivalent to doing article.journals to return hasMany
-    Set<TitleInstance> getTitleInstances() { //i.e. the journals 
-        Appearence.findAllByArticle(this).collect { it.titleInstance }
-    }
-
-    //is the article connected to any journals etc
-    boolean hasTitleInstance(TitleInstance titleInstance) {
-        Appearence.countByArticleAndTitleInstance(this, titleInstance) > 0
-    }
-
     Set<Appearence> getAppearances() {
-        Appearence.findAllByArticle(this)
+        def article_appearance_type = RefdataCategory.lookupOrCreate('Combo.Type','Appearence.Article')
+        Appearence.executeQuery("select c.fromComponent from Combo as c where c.toComponent = :article and c.type = :type",
+                                [article:this, type:article_appearance_type]);
     }
 
     static constraints = {

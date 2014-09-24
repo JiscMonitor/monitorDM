@@ -15,7 +15,7 @@ class Fund extends KBComponent {
   static def refdataFind(params) {
     def result = [];
     def ql = null;
-    ql = Office.findAllByNameIlike("${params.q}%",params)
+    ql = Fund.findAllByNameIlike("${params.q}%",params)
 
     if ( ql ) {
       ql.each { t ->

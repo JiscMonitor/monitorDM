@@ -57,4 +57,13 @@ class InstitutionController {
     result.totalHits = DomainName.executeQuery("select count(d) from DomainName as d where d.fqdn like ?",["%${params.q}%"])[0]
     result
   }
+
+  @Secured(['ROLE_USER', 'IS_AUTHENTICATED_FULLY'])
+  def APCDashboard() {
+    def result=[:]
+    result.org = Org.get(params.id)
+    // Find all occurrences of articles by authors affiliated to this institution
+    result.works = AuthorName.executeQuery("select a from AuthorName as a where a.institution = ? or a.domainName.institution = ?",[result.org,result.org])
+    result
+  }
 }

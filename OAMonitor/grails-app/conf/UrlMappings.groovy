@@ -10,6 +10,7 @@ class UrlMappings {
         "/institution" ( controller:'institution', action:'index' )
         "/institution/$id" ( controller:'institution', action:'show' )
         "/institution/$id/claimFQDN" ( controller:'institution', action:'claimFQDN' )
+        "/institution/$id/APCDashboard" ( controller:'institution', action:'APCDashboard' )
 
         "/"(controller:'welcome', action:'index');
 
